@@ -1494,7 +1494,21 @@
       .price-layout,
       .feature-grid,
       .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-grid > *,
+      .intro-grid > *,
+      .section-head > *,
+      .price-layout > *,
+      .feature-grid > *,
+      .contact-grid > * {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .story {
+        padding-right: 0;
       }
 
       .hero-card {
@@ -2321,7 +2335,6 @@
   </script>
 </body>
 </html>
-
 
 
 
