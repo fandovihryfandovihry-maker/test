@@ -1588,6 +1588,43 @@
 		align-items: center;
 		gap: 8px; /* Sniž nebo zvýš toto číslo podle toho, jak těsně je chceš mít */
 	}
+
+    @media (max-width: 480px) {
+      .site-header {
+        top: 8px;
+      }
+
+      .nav-wrap {
+        width: calc(100% - 16px);
+        gap: 8px;
+        padding: 8px;
+      }
+
+      .brand {
+        gap: 7px;
+        font-size: 14px;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+        font-size: 16px;
+      }
+
+      .nav-actions {
+        gap: 5px;
+        flex: 0 0 auto;
+      }
+
+      .theme-toggle,
+      .nav-cta,
+      .menu-toggle {
+        width: 40px;
+        height: 40px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2335,7 +2372,6 @@
   </script>
 </body>
 </html>
-
 
 
 
