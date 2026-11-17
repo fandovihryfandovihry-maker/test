@@ -1975,8 +1975,8 @@
 
       .hero h1,
       .hero .eyebrow {
-        color: var(--ink);
-        text-shadow: none;
+        color: #fffdf8;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, .6);
       }
 
       .hero .hero-lead,
@@ -2680,7 +2680,7 @@
 
     const themeToggle = document.querySelector("#themeToggle");
     const storedTheme = localStorage.getItem("bezdekovsky-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
     function applyTheme(theme) {
       body.dataset.theme = theme;
@@ -2689,7 +2689,13 @@
       themeToggle.querySelector(".theme-icon").textContent = isDark ? "☀" : "☾";
     }
 
-    applyTheme(storedTheme || (prefersDark ? "dark" : "light"));
+    applyTheme(storedTheme || (systemTheme.matches ? "dark" : "light"));
+
+    systemTheme.addEventListener("change", (event) => {
+      if (!localStorage.getItem("bezdekovsky-theme")) {
+        applyTheme(event.matches ? "dark" : "light");
+      }
+    });
 
     themeToggle.addEventListener("click", () => {
       const nextTheme = body.dataset.theme === "dark" ? "light" : "dark";
