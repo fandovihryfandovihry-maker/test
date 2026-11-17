@@ -1944,6 +1944,88 @@
       text-shadow: 0 1px 4px rgba(0, 0, 0, .55);
       text-wrap: pretty;
     }
+
+    @media (max-width: 640px) {
+      .hero {
+        display: block;
+        min-height: 0;
+        padding: 94px 0 48px;
+        background: var(--cream);
+        color: var(--ink);
+      }
+
+      .hero::before,
+      .hero::after {
+        display: none;
+      }
+
+      .hero .hero-bg {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: calc(100% - 32px);
+        height: auto;
+        aspect-ratio: 3 / 4;
+        margin: 0 auto;
+        object-fit: contain;
+        border-radius: var(--radius);
+      }
+
+      .hero .hero-grid {
+        width: calc(100% - 40px);
+        gap: 28px;
+        padding-top: 28px;
+      }
+
+      .hero .eyebrow {
+        color: var(--moss);
+        text-shadow: none;
+        font-size: 11px;
+        letter-spacing: .09em;
+      }
+
+      .hero h1 {
+        color: var(--ink);
+        text-shadow: none;
+        font-size: clamp(38px, 10vw, 56px);
+        line-height: 1.08;
+      }
+
+      .hero .hero-lead {
+        margin-top: 18px;
+        color: var(--muted);
+        text-shadow: none;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      .hero .hero-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .hero .hero-actions .button {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero .hero-card {
+        background: var(--paper);
+        border-color: var(--line);
+        box-shadow: none;
+      }
+
+      .hero .hero-note {
+        color: var(--muted);
+      }
+
+      .hero + .notice-strip {
+        margin-top: 0;
+      }
+    }
   </style>
 </head>
 <body>
