@@ -1948,7 +1948,7 @@
     @media (max-width: 640px) {
       .hero {
         padding-top: calc(100vw * .91);
-        background: #263225;
+        background: var(--cream);
       }
 
       .hero .hero-bg {
@@ -1962,11 +1962,32 @@
       .hero::before {
         background: linear-gradient(
           180deg,
-          rgba(17, 22, 15, .08) 0,
-          rgba(17, 22, 15, .08) calc(100vw * .78),
-          rgba(17, 22, 15, .58) calc(100vw * .95),
-          #263225 calc(100vw * 4 / 3)
+          transparent 0,
+          transparent calc(100vw * .72),
+          color-mix(in srgb, var(--cream) 78%, transparent) calc(100vw * .91),
+          var(--cream) calc(100vw * 4 / 3)
         );
+      }
+
+      .hero::after {
+        opacity: 1;
+      }
+
+      .hero h1,
+      .hero .eyebrow {
+        color: var(--ink);
+        text-shadow: none;
+      }
+
+      .hero .hero-lead,
+      .hero .hero-note {
+        color: var(--muted);
+        text-shadow: none;
+      }
+
+      .hero .hero-card {
+        background: var(--paper);
+        border-color: var(--line);
       }
 
       .hero .hero-grid {
