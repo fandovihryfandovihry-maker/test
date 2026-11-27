@@ -11,11 +11,31 @@
        KONFIGURACE – UPRAVUJTE ZDE
        Pro změnu cen, termínu porážky nebo textů stačí
        změnit hodnoty v uvozovkách níže a uložit soubor.
+       Kontakty a měsíce upravte v siteSettings, ceny v editableContent.
+       orderMonth = název na tlačítku (červen), pickupMonth = ve větě (červnu).
+       Částka i jednotka patří do jedné hodnoty, například "310 Kč/kg".
+       U textů lze ponechat značky <strong>, <a> a <br>.
+       Uvozovku uvnitř textu zapište jako &quot;.
+       Příjemce zpráv měňte v účtu Formspree, zde jen ID formuláře.
+       Po změně uložte HTML a obnovte stránku. Níže pod CSS je už zobrazení a chování.
        ==================================================== */
+    // ZÁKLADNÍ NASTAVENÍ. Měňte pouze hodnoty v uvozovkách.
+    // Příjemce e-mailu se nastavuje také v administraci Formspree.
+    const siteSettings = {
+      formspreeId: "mvkanpvj",
+      email: "reznicci.rohozna@seznam.cz",
+      phoneDisplay: "606 110 436",
+      phoneLink: "+420606110436",
+      emailSubject: "Poptávka masa",
+      orderMonth: "červen",
+      pickupMonth: "červnu"
+    };
+
     const editableContent = {
       // --- Termín porážky (zobrazí se v boxu nahoře) ---
       noticeMeatTitle: "Aktuální termín porážky",
-      noticeMeatText: 'Milí zákazníci, přijímáme objednávky na vyzrálé hovězí balíky k odběru v <strong>červnu.</strong> Objednávky zasílejte na email <a href="mailto:reznicci.rohozna@seznam.cz">reznicci.rohozna@seznam.cz</a> nebo volejte 606 110 436. Až budou balíčky připraveny, zašleme zprávu na Váš telefon o jejich možném vyzvednutí.',
+      noticeMeatText: 'Milí zákazníci, přijímáme objednávky na vyzrálé hovězí balíky k odběru v <strong>' + siteSettings.pickupMonth + '.</strong>', 
+      noticeMeatContact: 'Objednat můžete přes formulář výše, e-mailem na <a href="mailto:' + siteSettings.email + '">' + siteSettings.email + '</a> nebo telefonicky na <a href="tel:' + siteSettings.phoneLink + '">' + siteSettings.phoneDisplay + '</a>. Jakmile budou balíčky připravené k vyzvednutí, dáme vám vědět SMS zprávou.', 
 
       // --- Ceny balíčků ---
       price10kg: "310 Kč/kg",
@@ -53,7 +73,7 @@
       heroEyebrow: "Ekostatek rodiny Řezníčkovy",
       heroTitle: "Bezděkovský mlýn",
       heroLead: "V údolí Rohozenského potoka hospodaříme v režimu ekologického zemědělství. Nabízíme vyzrálé hovězí maso, obilí, vajíčka a klidné ubytování na venkově.",
-      heroPrimaryButton: "Objednávka červen",
+      heroPrimaryButton: "Objednávka " + siteSettings.orderMonth,
       heroSecondaryButton: "Domluvit návštěvu",
       noticeStayTitle: "Ubytování na mlýně",
       noticeAwardTitle: "Ekostatek roku 2019",
@@ -66,7 +86,105 @@
       galleryTitle: "Pastviny, obilí, koně, mlýnice a život kolem mlýna",
       storiesTitle: "Ocenění, mlynářská historie a příroda kolem Rohozné",
       downloadsTitle: "Certifikát, maso a praktické přílohy",
-      contactTitle: "Zavolejte, napište nebo přijeďte do Rohozné"
+      contactTitle: "Zavolejte, napište nebo přijeďte do Rohozné",
+
+      // DALŠÍ TEXTY. Klíč vlevo neměňte. Značky <br> dělají nový řádek.
+      // „Největší štěstí, jaké může člověka potkat, je, když je mu dopřáno dělat práci, která
+      heroQuote: "„Největší štěstí, jaké může člověka potkat, je, když je mu dopřáno dělat práci, která ho baví a o níž je přesvědčen, že je užitečná.“ Josef Škvorecký",
+      // Rohozná leží 17 km jihozápadně od Jihlavy, v přírodě s lesy, rybníky, poli a loukami 
+      aboutCopy: "Rohozná leží 17 km jihozápadně od Jihlavy,<br class=\"copy-break\"> v přírodě s lesy, rybníky, poli a loukami<br class=\"copy-break\"> na okraji parku Čeřínek.",
+      // Milí návštěvníci, těší nás, že jste zavítali na naše stránky. Dozvíte se, co nás baví
+      aboutText1: "Milí návštěvníci, těší nás, že jste zavítali na naše stránky. Dozvíte se, co nás baví a živí zároveň :-) Pokud nás budete chtít navštívit nebo u nás nakoupit, stačí zavolat nebo napsat a domluvíme se. Jste srdečně zváni :-)",
+      // Na západním okraji jihlavského okresu 17 km jihozápadně od Jihlavy leží v údolí Rohoz
+      aboutText2: "Na západním okraji jihlavského okresu 17 km jihozápadně od Jihlavy leží v údolí Rohozenského potoka v nadmořské výšce 550 metrů obec Rohozná. Část rozlehlého katastru patří do přírodního parku Čeřínek. Nedotčená příroda s lesy, rybníky, poli a loukami. Náš ekostatek Bezděkovský mlýn se nachází v místní části Familie. Je to zemědělská usedlost, které sahá historie až do 16. století jako rohozenský mlýn. Rod Bezděkovských se píše od roku 1759, kdy Tomáš Bezděkovský vystavěl starý mlýn a žádal vrchnost, aby na něm mohl zůstat. Od té doby si zde Bezděkovští předávali své mlynářské řemeslo po další generace. Posledním mlynářem byl dědeček Josef Bezděkovský, který s láskou provozoval nejen své řemeslo, ale obhospodařoval i půdu, kterou ke mlýnu měl. Od roku 1993 se začalo u nás opět hospodařit. Nebylo to však již ve mlýnici pod jménem Bezděkovských, ale na polích jako Štěchovi :-) Od roku 2010 jsme se postupně začali rozrůstat. Převzali jsme pole a ovečky my Řezníčkovi a pořídili si ještě masný skot. Nyní hospodaříme v režimu ekologického zemědělství na výměře 272 ha zemědělské půdy. Na orné půdě pěstujeme obilí, brambory, luskovinoobilní a jetelotravní směsky. Tím jsme schopni si udělat vlastní krmení. Na loukách sušíme seno. Stáda skotu se pasou od jara do podzimu na pastvinách. Na zimu jsou ustájena s možností výběhů nebo na zimovištích na hluboké a pravidelně stlané podestýlce.",
+      // Další informace a zajímavosti: Vodní mlýny Český rozhlas Český rozhlas
+      aboutText3: "Další informace a zajímavosti:<br><a href=\"https://vodnimlyny.cz/mlyny/mlyn/1144-bezdekovsky-mlyn\" target=\"_blank\" rel=\"noopener\">Vodní mlýny</a><br><a href=\"https://www.rozhlas.cz/vysocina/toulky/_zprava/bydli-ve-mlyne-ale-mouku-nemelou-nabidnou-vam-ale-domaci-hovezi--1636919\" target=\"_blank\" rel=\"noopener\">Český rozhlas</a><br><a href=\"https://www.rozhlas.cz/kraje/pochoutky/_zprava/1642843\" target=\"_blank\" rel=\"noopener\">Český rozhlas</a>",
+      // Doplňujeme, co dnes na statku děláme: pole, krmení, půdu, maso, telata, nektarodárné 
+      ecologyCopy: "Doplňujeme, co dnes na statku děláme:<br class=\"copy-break\"> pole, krmení, půdu, maso, telata,<br class=\"copy-break\"> nektarodárné pásy i Den otevřených mlýnů.",
+      // Proč jsme přešli do ekologie
+      article1Text1: "Proč jsme přešli do ekologie",
+      // Do ekologického hospodaření jsme přešli postupně z přesvědčení. Rodiče sice hospodaři
+      article1Text2: "Do ekologického hospodaření jsme přešli postupně z přesvědčení. Rodiče sice hospodařili konvenčně, ale brambory si nikdy chemicky nepostříkali.",
+      // Když nám do rodiny začaly přicházet naše děti a chtěly jezdit s tatínkem po polích, u
+      article1Text3: "Když nám do rodiny začaly přicházet naše děti a chtěly jezdit s tatínkem po polích, uvědomili jsme si, že nechceme, aby jezdily v traktorech od postřiků a průmyslových hnojiv. Po několika kamarádských návštěvách u Pepy Sklenáře na Biofarmě Sasov jsme došli k závěru, že jediná cesta pro zdraví našich dětí a nás vede do ekologie. Pepa nás svými radami a zkušenostmi podporoval a jsme rádi, že jsme ten správný krok udělali.",
+      // Jetelotravní senáže
+      article2Text1: "Jetelotravní senáže",
+      // Jetelotravní senáže čistí pole, když je na 2-3 roky zařadíme do osevního postupu a dě
+      article2Text2: "Jetelotravní senáže čistí pole, když je na 2-3 roky zařadíme do osevního postupu a děláme 2-3 seče ročně. Každý rok si pravidelně zakládáme nové porosty pro dostatek krmení. Nespoléháme se jen na louky. Sečeme mladý porost v odpoledních hodinách, aby měl dostatek cukrů, senáž lépe fermentovala a měla dostatek energie. Tím lehce výživově nahradíme kukuřici.",
+      // Před sečením se procházejí porosty, aby se zabránilo posečení srnčat. V porostu nechá
+      article2Text3: "Před sečením se procházejí porosty, aby se zabránilo posečení srnčat. V porostu necháváme neposečené pásy pro včely, motýly a různé broučky.",
+      // Hnojení
+      article3Text1: "Hnojení",
+      // Hnojení je důležitá součást zemědělství. Hnůj se musí vrátit na pole, protože zlepšuj
+      article3Text2: "Hnojení je důležitá součást zemědělství. Hnůj se musí vrátit na pole, protože zlepšuje stav půdy a jeho včasné zapravení zabrání úniku dusíku do ovzduší. Naše půda je živá a hospodaří na ní také žížaly.",
+      // Peluška
+      article4Text1: "Peluška",
+      // Peluška je pro nás výborná plodina. Osivo nakupujeme certifikované BIO nebo žádáme o 
+      article4Text2: "Peluška je pro nás výborná plodina. Osivo nakupujeme certifikované BIO nebo žádáme o výjimku na ÚKZÚZ (na osivové porosty). Máme z ní troje využití. Dodá půdě dusík, vyrobíme z ní bio osivo a po vytřídění se nám vrátí jako kvalitní bílkovinné krmivo, které mačkáme pro výkrm býků a pro telátka.",
+      // Čisté porosty
+      article5Text1: "Čisté porosty",
+      // I kombajnér se občas diví, že máme krásné čisté porosty 😀
+      article5Text2: "I kombajnér se občas diví, že máme krásné čisté porosty 😀",
+      // Kvalitní bio maso
+      article6Text1: "Kvalitní bio maso",
+      // Díky polím, loukám a pastvinám bez chemických postřiků a hnojiv máme kvalitní maso a 
+      article6Text2: "Díky polím, loukám a pastvinám bez chemických postřiků a hnojiv máme kvalitní maso a produkty rostlinné výroby, které jsou označené jako Bio. Maso je chutné, šťavnaté a křehké. Po porážce maso zraje ve čtvrtích 2-3 týdny při teplotě 1-2°C. Po rozbourání zraje další 2-3 týdny ve vakuu.",
+      // Pokud zvíře potřebuje lék, je nutná dvojnásobná ochranná lhůta, aby maso bylo beze zb
+      article6Text3: "Pokud zvíře potřebuje lék, je nutná dvojnásobná ochranná lhůta, aby maso bylo beze zbytku léčiv.",
+      // Telata
+      article7Text1: "Telata",
+      // Telata potřebují perfektní základ proto, aby z nich vyrostli pěkní býci na výkrm a ja
+      article7Text2: "Telata potřebují perfektní základ proto, aby z nich vyrostli pěkní býci na výkrm a jalovice do chovu. Je pro ně důležitý pobyt s matkou, která jim dopřává neomezené množství mateřského mléka a pak dostávájí podle chuti do příkrmiště dostatek mačkaného bioobilí (pšenice, triticale, oves, ječmen s peluškou a minerální směs). Telata spolu běhají na pastvině ve skupinkách, hrají si a poskakují. Odstavují se od mamin v době, kdy jsou již pohlavně dospělá a znají od mamin nejen pastvu, ale i chuť kvalitní senáže.",
+      // Nektarodárné pásy
+      article8Text1: "Nektarodárné pásy",
+      // Nektarodárné pásy jsme začali zakládat, aby i včelky měly svoji pastvu v době, kdy je
+      article8Text2: "Nektarodárné pásy jsme začali zakládat, aby i včelky měly svoji pastvu v době, kdy je už všechno odkvetlé. Směs se skládá z pohanky, svazenky, mastňáku, béru, slunečnice a několika druhů jetelů. Kvete postupně a dlouho do podzimu. Necháváme ho i přes zimu, aby mohli ptáci vyzobávat semínka. Také je krásným úkrytem nejen pro ptáky, ale i pro srnky a zajíce.",
+      // Den otevřených mlýnů
+      article9Text1: "Den otevřených mlýnů",
+      // Od roku 2024 se účastníme celorepublikového Dne otevřených mlýnů.
+      article9Text2: "Od roku 2024 se účastníme celorepublikového Dne otevřených mlýnů.",
+      // Plakát a fotky z roku 2026
+      article9Text3: "<a href=\"#den-otevrenych-mlynu-2026\">Plakát a fotky z roku 2026</a>",
+      // Maso, obilí a vajíčka z hospodářství, které stojí na vlastním krmení, pastvinách a tr
+      productsCopy: "Maso, obilí a vajíčka z hospodářství,<br class=\"copy-break\"> které stojí na vlastním krmení,<br class=\"copy-break\"> pastvinách a trpělivé práci.",
+      // Hovězí maso
+      article10Text1: "Hovězí maso",
+      // Zrání masa a použití partií masa se upravuje podle šéfkuchaře :-)
+      article10Text2: "Zrání masa a použití partií masa se upravuje podle šéfkuchaře :-)",
+      // Vajíčka
+      article11Text1: "Vajíčka",
+      // Kdo má rád vajíčka, jistě ocení, že naše slípky běhají po pastvinách a sezobnou nač m
+      article11Text2: "Kdo má rád vajíčka, jistě ocení, že naše slípky běhají po pastvinách a sezobnou nač mají chuť, hlavně dostatek čerstvé trávy. Díky tomu nás pak obdarují chutnými vajíčky s krásnými žlutými žloutky. Pekařky pak ocení krásné žluté těsto na buchty :-) Výživoví poradci vajíčka doporučují jako přirozený zdroj bílkovin a schvalují jejich pojídání i několikrát týdně.",
+      // Kravičky
+      article12Text1: "Kravičky",
+      // V roce 2010 jsme si přivezli prvních 7 jalovic Aberdeen Angus. A když k nim přibyl ná
+      article12Text2: "V roce 2010 jsme si přivezli prvních 7 jalovic Aberdeen Angus. A když k nim přibyl náš první plemenný býk Matěj I., začali jsme se těšit na první telátka. A pak už postupně přibývali další :-)",
+      // Plemeno Aubrac
+      article13Text1: "Plemeno Aubrac",
+      // V současné době jsme rozšířili náš chov o masné plemeno Aubrac. Pochází z benediktins
+      article13Text2: "V současné době jsme rozšířili náš chov o masné plemeno Aubrac. Pochází z benediktinského opatství v jižní Francii. Je to velmi odolné plemeno, které dobře snáší hory, ale i teplé a suché oblasti. Dokáže udělat vysoký přírůstek na pastvinách horší kvality.",
+      // Koníci
+      article14Text1: "Koníci",
+      // Koníci patří také na statek a tak se k nám nejdříve dostal Slezský norik Blesk, který
+      article14Text2: "Koníci patří také na statek a tak se k nám nejdříve dostal Slezský norik Blesk, který se dožil 27 let. Valach, který celý život pracoval v lese a na našich pastvinách si užíval už jen zaslouženého odpočinku :-)",
+      // Aby Bleskovi nebylo smutno, přibyla k němu kobylka Haflinga Zuzana, která se dožila 2
+      article14Text3: "Aby Bleskovi nebylo smutno, přibyla k němu kobylka Haflinga Zuzana, která se dožila 24 let a obdarovala nás dvěma hříbaty – Nugetou a Hříbkem. Jako zasloužilá matka si také užívala klid na pastvinách :-)",
+      // Po odchodu Bleska se k nám dostala kobylka Českomoravského belgika Sindy, od které má
+      article14Text4: "Po odchodu Bleska se k nám dostala kobylka Českomoravského belgika Sindy, od které máme také dvě hříbata - Marcuse a Bleska.",
+      // Obilí
+      article15Text1: "Obilí",
+      // Na orné půdě pěstujeme obilí pro naše zvířata. Nejčastěji uvidíte pšenici, ječmen, ov
+      article15Text2: "Na orné půdě pěstujeme obilí pro naše zvířata. Nejčastěji uvidíte pšenici, ječmen, oves a tritikale. Když můžeme našim mazlíkům dopřát, tak do obilí přisejeme ještě hrách nebo pelušku. Malým chovatelům prodáváme obilí v pytlích podle potřeby. Produkujeme také certifikovaná osiva.",
+      // Nabízíme také dárkové poukazy . Ceny jsou uvedené podle původního ceníku.
+      pricingCopy: "Nabízíme také <a href=\"files/dokumenty/poukaz1.jpg\" target=\"_blank\">dárkové poukazy</a>. Ceny jsou uvedené podle původního ceníku.",
+      // Fotky ze statku, mlýnice, polních prací a hospodářských zvířat. Kategorie lze rychle 
+      galleryCopy: "Fotky ze statku, mlýnice, polních prací<br class=\"copy-break\"> a hospodářských zvířat.<br class=\"copy-break\"> Kategorie lze rychle filtrovat.",
+      // Další informace a zajímavosti z Bezděkovského mlýna, historie mlynářského rodu a přír
+      storiesCopy: "Další informace a zajímavosti z Bezděkovského mlýna, historie mlynářského rodu a příroda kolem Rohozné.",
+      // Všechny původní soubory ke stažení zůstaly dostupné.
+      downloadsCopy: "Všechny původní soubory ke stažení zůstaly dostupné.",
+      // Pro objednávky masa, ubytování i návštěvu statku je nejlepší se předem domluvit.
+      contactCopy: "Pro objednávky masa, ubytování i návštěvu statku je nejlepší se předem domluvit."
     };
   </script>
   <style>
@@ -2005,6 +2123,522 @@
         margin-top: 24px;
       }
     }
+
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .hero-grid > div { max-width: 600px; }
+    .farm-moments { padding-top: clamp(32px, 5vw, 64px); }
+    .farm-photos {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: clamp(16px, 3vw, 28px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(49, 42, 28, .08);
+    }
+    .farm-photos > img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+    .farm-photos > img.portrait-safe { object-position: center top; }
+    .farm-motto {
+      grid-column: 1 / -1;
+      max-width: 820px;
+      margin: 14px auto 0;
+      color: var(--ink);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.6;
+      text-align: center;
+    }
+    .section-copy { max-width: none; }
+    .meat-aging {
+      scroll-margin-top: 100px;
+      margin-top: 18px;
+      padding: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .meat-aging summary { cursor: pointer; font-weight: 700; }
+    .meat-aging p { margin-top: 14px; }
+    @media (max-width: 640px) {
+      .farm-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .copy-break { display: none; }
+    }
+
+    .inquiry-card {
+      max-width: 900px;
+      margin-inline: auto;
+      padding: clamp(22px, 5vw, 48px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(49, 42, 28, .08);
+    }
+    .inquiry-intro h2 { font-size: clamp(28px, 4vw, 42px); }
+    .inquiry-intro > p:last-child { color: var(--muted); margin-top: 14px; }
+    .inquiry-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .inquiry-form .full { grid-column: 1 / -1; }
+    .form-field { display: grid; gap: 8px; min-width: 0; }
+    .form-field label { font-weight: 700; font-size: 15px; }
+    .form-field .optional { color: var(--muted); font-weight: 400; }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%;
+      min-width: 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--cream);
+      color: var(--ink);
+      font: inherit;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .form-field input, .form-field select { min-height: 52px; }
+    .form-field textarea { resize: vertical; }
+    .form-field select {
+      appearance: none;
+      padding-right: 42px;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: calc(100% - 23px) 23px, calc(100% - 17px) 23px;
+      background-size: 6px 6px;
+      background-repeat: no-repeat;
+    }
+    .form-field input:focus-visible, .form-field select:focus-visible, .form-field textarea:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 3px;
+    }
+    .inquiry-footer .button { width: 100%; justify-content: center; white-space: normal; text-align: center; }
+    .inquiry-note, #inquiryStatus { font-size: 14px; color: var(--muted); margin-top: 14px; }
+    .site-header.compact .nav-wrap { backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .site-header.compact .menu-toggle { display: block; }
+    .site-header.compact .nav-links {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 100px 24px 30px;
+      background: var(--paper);
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: none;
+    }
+    .site-header.compact .nav-links a {
+      font-size: clamp(18px, 3vh, 24px);
+      padding: 8px 12px;
+      opacity: 1;
+      transform: none;
+    }
+    .site-header.compact .brand, .site-header.compact .nav-actions { position: relative; z-index: 2; }
+    body.nav-open .site-header.compact .nav-links { opacity: 1; visibility: visible; pointer-events: auto; }
+    body.nav-open { overflow: hidden; }
+    @media (max-width: 580px) {
+      .inquiry-form { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-height: 650px) {
+      .site-header.compact .nav-links { justify-content: flex-start; }
+      .site-header.compact .nav-links a { font-size: 18px; padding-block: 5px; }
+    }
+
+    @media (min-width: 1201px) {
+      .nav-wrap {
+        width: min(1440px, calc(100% - 28px));
+        gap: 12px;
+      }
+      .nav-links { gap: 0; }
+      .nav-links a { padding-inline: 9px; }
+    }
+
+    @media (max-width: 1200px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        padding: 104px 24px 40px;
+        border-radius: 0;
+        background: color-mix(in srgb, var(--paper) 94%, transparent);
+        box-shadow: none;
+        backdrop-filter: blur(24px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(1.025);
+        transition: opacity .32s ease, visibility .32s ease, transform .42s cubic-bezier(.22, 1, .36, 1);
+      }
+
+      .nav-links a {
+        width: min(100%, 420px);
+        padding: 10px 18px;
+        color: var(--ink);
+        font-size: clamp(25px, 7vw, 38px);
+        line-height: 1.15;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: color .2s ease, background .2s ease, opacity .28s ease, transform .42s cubic-bezier(.22, 1, .36, 1);
+      }
+
+      body.nav-open .nav-links {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+
+      body.nav-open .nav-links a {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      body.nav-open .nav-links a:nth-child(2) { transition-delay: .035s; }
+      body.nav-open .nav-links a:nth-child(3) { transition-delay: .07s; }
+      body.nav-open .nav-links a:nth-child(4) { transition-delay: .105s; }
+      body.nav-open .nav-links a:nth-child(5) { transition-delay: .14s; }
+      body.nav-open .nav-links a:nth-child(6) { transition-delay: .175s; }
+      body.nav-open .nav-links a:nth-child(7) { transition-delay: .21s; }
+
+      .brand,
+      .nav-actions {
+        position: relative;
+        z-index: 2;
+      }
+
+      body.nav-open .nav-wrap {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+
+      body.nav-open .menu-toggle {
+        transform: rotate(90deg);
+      }
+
+
+      .nav-cta {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: inline-grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+      .nav-cta .phone-text { display: none; }
+      .nav-cta .phone-icon { display: inline; }
+    }
+
+    .nav-order {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      color: var(--paper);
+      background: var(--moss);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+      text-decoration: none;
+      box-shadow: 0 5px 16px rgba(49, 70, 37, .12);
+      transition: background .18s, transform .18s;
+    }
+    .nav-order:hover { background: var(--leaf); transform: translateY(-1px); }
+    .nav-order:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .nav-wrap { width: min(1480px, calc(100% - 28px)); }
+    .nav-links a { padding-inline: 8px; }
+
+    .inquiry-card {
+      max-width: 840px;
+      padding: clamp(24px, 5vw, 50px);
+      border-radius: 24px;
+      background: linear-gradient(145deg, var(--paper), var(--cream));
+      box-shadow: 0 20px 64px rgba(38, 42, 31, .07);
+    }
+    .inquiry-intro { max-width: 590px; }
+    .inquiry-intro .section-kicker { margin-bottom: 10px; }
+    .inquiry-intro h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.13; }
+    .inquiry-intro > p:last-child { line-height: 1.65; }
+    .inquiry-form { margin-top: 28px; gap: 20px 18px; }
+    .form-field label { font-size: 14px; letter-spacing: .01em; }
+    .form-field input, .form-field textarea {
+      background: var(--paper);
+      border-radius: 12px;
+      padding: 15px 16px;
+    }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted); opacity: .8; }
+    .form-field textarea { min-height: 120px; }
+    .inquiry-footer .button {
+      min-height: 58px;
+      border-radius: 14px;
+      font-size: 17px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 22px rgba(49, 70, 37, .1);
+    }
+    .inquiry-footer .button:disabled { cursor: wait; opacity: .7; }
+    .inquiry-note { margin-top: 16px; text-align: center; font-size: 13px; line-height: 1.6; }
+    #inquiryStatus:empty { display: none; }
+    #inquiryStatus:not(:empty) {
+      padding: 14px 16px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+    .product-choice { position: relative; min-width: 0; }
+    .choice-trigger {
+      width: 100%;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 17px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+      color: var(--ink);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+    }
+    .choice-trigger[hidden], .choice-menu[hidden], .product-choice select[hidden] { display: none; }
+    .choice-trigger:focus-visible, .choice-trigger[aria-expanded="true"] {
+      outline: 2px solid var(--moss);
+      outline-offset: 3px;
+    }
+    .choice-trigger[aria-invalid="true"] { border-color: #b84e3c; }
+    .choice-chevron {
+      flex: 0 0 8px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg) translateY(-2px);
+      transition: transform .18s;
+    }
+    .choice-trigger[aria-expanded="true"] .choice-chevron { transform: rotate(225deg); }
+    .choice-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      z-index: 10;
+      max-height: min(320px, 45vh);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      list-style: none;
+      margin: 0;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .choice-menu [role="option"] {
+      padding: 12px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .choice-menu [role="option"]:hover, .choice-menu .is-active { background: var(--sky); }
+    .choice-menu [aria-selected="true"] { color: var(--moss); font-weight: 700; }
+    @media (min-width: 1201px) and (max-width: 1400px) {
+      .nav-cta { width: 44px; height: 44px; padding: 0; display: inline-grid; place-items: center; }
+      .nav-cta .phone-text { display: none; }
+      .nav-cta .phone-icon { display: inline; }
+      .brand { font-size: 16px; }
+      .nav-wrap { gap: 8px; }
+      .nav-order { padding-inline: 16px; }
+    }
+    @media (max-width: 640px) {
+      .nav-wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) repeat(3, 36px);
+        gap: 7px;
+        padding: 8px;
+        border-radius: 22px;
+      }
+      .nav-actions { display: contents; }
+      .nav-wrap > .brand { grid-row: 1; grid-column: 1; font-size: 13px; gap: 6px; }
+      .nav-actions .theme-toggle { grid-row: 1; grid-column: 2; }
+      .nav-actions .nav-cta { grid-row: 1; grid-column: 3; }
+      .nav-actions .menu-toggle { grid-row: 1; grid-column: 4; }
+      .nav-actions > * { position: relative; z-index: 2; }
+      .nav-actions .theme-toggle, .nav-actions .nav-cta, .nav-actions .menu-toggle { width: 36px; height: 36px; }
+      .nav-order { grid-column: 1 / -1; grid-row: 2; min-height: 44px; }
+      .nav-links { padding-top: 140px; }
+      section[id], #nasi-mlynari, #aktualni-porazka { scroll-margin-top: 140px; }
+      .inquiry-card { border-radius: 20px; padding: 24px 18px; }
+      .hero { padding-top: max(calc(100vw * .91), 150px); }
+    }
+
+    .nav-actions .nav-order {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--moss);
+      color: var(--paper);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.4;
+      box-shadow: none;
+    }
+    .nav-actions .nav-order:hover {
+      background: #3f5e3b;
+      color: var(--paper);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(79, 111, 74, .22);
+    }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    .notice-order { margin-top: 18px; }
+    .choice-menu [role="option"] {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .choice-label { min-width: 0; }
+    .choice-price {
+      flex-shrink: 0;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .package-grid > #poptavka {
+      padding: 8px 0 0;
+      background: transparent;
+      min-width: 0;
+    }
+    .package-grid > #poptavka > .container {
+      width: 100%;
+      margin: 0;
+    }
+    .package-grid .inquiry-card { padding: clamp(20px, 2.5vw, 30px); }
+    .package-grid .inquiry-intro h2 { font-size: clamp(27px, 3vw, 34px); }
+    .package-grid .inquiry-form { gap: 18px 14px; }
+    .package-grid .form-field label { font-size: 14px; }
+    @media (max-width: 1100px) {
+      .package-grid .inquiry-form { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 980px) and (min-width: 581px) {
+      .package-grid .inquiry-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 400px) {
+      .choice-menu [role="option"] { gap: 8px; padding-inline: 10px; }
+      .choice-label { font-size: 14px; }
+      .choice-price { font-size: 13px; }
+    }
+
+    #aktualni-porazka .notice-contact {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .nav-links .menu-order { display: none; }
+
+    .price-layout {
+      grid-template-areas: "packages prices" "order prices";
+      grid-template-rows: auto 1fr;
+      align-items: stretch;
+      row-gap: 24px;
+    }
+    .price-layout > .package-grid { grid-area: packages; align-self: start; }
+    .price-layout > .price-table-wrap { grid-area: prices; }
+    .price-layout > #poptavka {
+      grid-area: order;
+      align-self: end;
+      padding: 0;
+      background: transparent;
+      min-width: 0;
+    }
+    .price-layout > #poptavka > .container { width: 100%; margin: 0; }
+    .price-layout > #poptavka .inquiry-card {
+      padding: clamp(20px, 2.5vw, 30px);
+      max-width: none;
+      border-radius: var(--radius);
+    }
+    .price-layout > #poptavka .inquiry-intro h2 { font-size: clamp(27px, 3vw, 34px); }
+    .price-layout > #poptavka .inquiry-form { gap: 18px 14px; }
+    .price-layout > .price-table-wrap table { height: 100%; }
+    @media (max-width: 1200px) {
+      .nav-actions .nav-order { display: none; }
+      .nav-links .menu-order {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14px;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: var(--moss);
+        color: var(--paper);
+        font-size: 16px;
+        font-weight: 800;
+      }
+    }
+    @media (max-width: 1100px) {
+      .price-layout > #poptavka .inquiry-form { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 980px) {
+      .price-layout {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "packages" "prices" "order";
+        grid-template-rows: auto auto auto;
+      }
+      .price-layout > .price-table-wrap table { height: auto; }
+    }
+    @media (min-width: 581px) and (max-width: 980px) {
+      .price-layout > #poptavka .inquiry-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .nav-wrap { border-radius: 999px; }
+      .nav-links { padding-top: 90px; }
+      section[id], #nasi-mlynari, #aktualni-porazka { scroll-margin-top: 96px; }
+    }
+
+    .field-error {
+      display: block;
+      margin-top: 2px;
+      color: #a12f25;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .field-error[hidden] { display: none; }
+    body[data-theme="dark"] .field-error { color: #ffb4a8; }
+    .form-field [aria-invalid="true"] { border-color: #b84e3c; }
   </style>
 </head>
 <body>
@@ -2025,7 +2659,7 @@
           <span>Bezděkovský mlýn</span>
         </a>
         <nav class="nav-links" id="navLinks">
-          <a href="#about">O statku</a>
+          <a href="#about">O statku</a>
           <a href="#nasi-mlynari">Naši mlynáři</a>
           <a href="#products">Produkty</a>
           <a href="#ecology">Hospodaření</a>
@@ -2033,8 +2667,10 @@
           <a href="#gallery">Fotky</a>
           <a href="#zajimavosti">Ze statku</a>
           <a href="#contact">Kontakt</a>
+          <a class="menu-order" href="#poptavka">Objednat maso</a>
         </nav>
         <div class="nav-actions">
+            <a class="nav-order" href="#poptavka">Objednat maso</a>
             <button class="theme-toggle" id="themeToggle" type="button" aria-label="Přepnout tmavý režim" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☾</span></button>
             <a class="nav-cta" href="tel:+420606110436" aria-label="Zavolat 606 110 436">
                 <span class="phone-text">606 110 436</span>
@@ -2052,55 +2688,61 @@
           <div>
             <p class="eyebrow" data-edit-key="heroEyebrow">Ekostatek rodiny Řezníčkovy</p>
             <h1 data-edit-key="heroTitle">Bezděkovský mlýn</h1>
-            <p class="hero-lead" data-edit-key="heroLead">V údolí Rohozenského potoka hospodaříme v režimu ekologického zemědělství. Nabízíme vyzrálé hovězí maso, obilí, vajíčka a klidné ubytování na venkově.</p>
+            <p class="hero-lead" data-edit-key="heroLead">V údolí Rohozenského potoka hospodaříme v režimu ekologického zemědělství. Nabízíme vyzrálé hovězí maso, obilí, vajíčka a klidné ubytování na venkově.</p>
             <div class="hero-actions">
               <a class="button" href="#aktualni-porazka" data-edit-key="heroPrimaryButton">Objednávka červen</a>
               <a class="button secondary" href="#contact" data-edit-key="heroSecondaryButton">Domluvit návštěvu</a>
             </div>
           </div>
-          <div class="hero-card" aria-label="Fotky z Bezděkovského mlýna">
-            <img src="files/nahledy/1100/mlyn/bezdekovsky-mlyn.jpg" alt="Nový pohled na Bezděkovský mlýn" loading="lazy" decoding="async">
-            <img src="files/nahledy/1100/mlyn/interier-mlynice.jpg" alt="Mlýnice v Bezděkovském mlýně" loading="lazy" decoding="async">
-            <img src="files/nahledy/1100/produkty/balicky-hoveziho-masa.jpg" alt="Balíčky hovězího masa" loading="lazy" decoding="async">
-            <img class="portrait-safe" src="files/nahledy/1100/pole/marketka-v-obili.jpg" alt="Markétka v obilí" loading="lazy" decoding="async">
-            <div class="hero-note" data-edit-key="heroQuote">„Největší štěstí, jaké může člověka potkat, je, když je mu dopřáno dělat práci, která ho baví a o níž je přesvědčen, že je užitečná.“ Josef Škvorecký</div>
-          </div>
+
         </div>
       </section>
 
       <div class="container notice-strip">
         <article class="notice reveal" id="aktualni-porazka">
           <strong data-edit-key="noticeMeatTitle">Aktuální termín porážky</strong>
-          <p data-edit-key="noticeMeatText" data-edit-html="true">Milí zákazníci, přijímáme objednávky na vyzrálé hovězí balíčky k odběru v červnu. Objednávky zasílejte na email <a href="mailto:reznicci.rohozna@seznam.cz">reznicci.rohozna@seznam.cz</a> nebo volejte 606 110 436. Až budou balíčky připraveny, zašleme zprávu na Váš telefon o jejich možném vyzvednutí.</p>
+          <p data-edit-key="noticeMeatText" data-edit-html="true">Milí zákazníci, přijímáme objednávky na vyzrálé hovězí balíčky k odběru v červnu.</p>
+          <a class="button notice-order" href="#poptavka">Objednat maso</a>
+          <p class="notice-contact" data-edit-key="noticeMeatContact" data-edit-html="true">Objednat můžete přes formulář výše, e-mailem na <a href="mailto:reznicci.rohozna@seznam.cz">reznicci.rohozna@seznam.cz</a> nebo telefonicky na <a href="tel:+420606110436">606 110 436</a>. Jakmile budou balíčky připravené k vyzvednutí, dáme vám vědět SMS zprávou.</p>
         </article>
         <article class="notice reveal">
           <strong data-edit-key="noticeStayTitle">Ubytování na mlýně</strong>
-          <p data-edit-key="noticeStayText" data-edit-html="true"><a href="https://www.megaubytko.cz/apartman-bezdekovsky-mlyn" target="_blank" rel="noopener">Apartmán Bezděkovský mlýn</a> nabízí pohádkové ubytování na venkově. Přivítáme Vás s otevřenou náručí.</p>
+          <p data-edit-key="noticeStayText" data-edit-html="true"><a href="https://www.megaubytko.cz/apartman-bezdekovsky-mlyn" target="_blank" rel="noopener">Apartmán Bezděkovský mlýn</a> nabízí pohádkové ubytování na venkově. Přivítáme Vás s otevřenou náručí.</p>
         </article>
         <article class="notice reveal">
           <strong data-edit-key="noticeAwardTitle">Ekostatek roku 2019</strong>
-          <p data-edit-key="noticeAwardText" data-edit-html="true">V roce 2019 získal Bezděkovský mlýn dvě ocenění, Nejlepšího sedláka roku a Bartákův hrnec pro nejlepší ekofarmu. Podrobnosti najdete v záložce <a href="#zajimavosti">ze statku</a>.</p>
+          <p data-edit-key="noticeAwardText" data-edit-html="true">V roce 2019 získal Bezděkovský mlýn dvě ocenění, Nejlepšího sedláka roku a Bartákův hrnec pro nejlepší ekofarmu. Podrobnosti najdete v záložce <a href="#zajimavosti">ze statku</a>.</p>
         </article>
       </div>
+
+      <section class="farm-moments" aria-label="Fotky ze statku a motto"><div class="container">
+          <div class="farm-photos" aria-label="Fotky z Bezděkovského mlýna">
+            <img src="files/nahledy/1100/mlyn/bezdekovsky-mlyn.jpg" alt="Nový pohled na Bezděkovský mlýn" loading="lazy" decoding="async">
+            <img src="files/nahledy/1100/mlyn/interier-mlynice.jpg" alt="Mlýnice v Bezděkovském mlýně" loading="lazy" decoding="async">
+            <img src="files/nahledy/1100/produkty/balicky-hoveziho-masa.jpg" alt="Balíčky hovězího masa" loading="lazy" decoding="async">
+            <img class="portrait-safe" src="files/nahledy/1100/pole/marketka-v-obili.jpg" alt="Markétka v obilí" loading="lazy" decoding="async">
+            <div class="farm-motto" data-edit-key="heroQuote">„Největší štěstí, jaké může člověka potkat, je, když je mu dopřáno dělat práci, která ho baví a o níž je přesvědčen, že je užitečná.“ Josef Škvorecký</div>
+          </div>
+      </div></section>
 
       <section class="section" id="about">
         <div class="container">
           <div class="section-head reveal">
             <div>
-              <p class="section-kicker">O našem statku</p>
-              <h2 data-edit-key="aboutTitle">Mlýn s dlouhou pamětí a živým hospodářstvím</h2>
+              <p class="section-kicker">O našem statku</p>
+              <h2 data-edit-key="aboutTitle">Mlýn s dlouhou pamětí a živým hospodářstvím</h2>
             </div>
-            <p class="section-copy" data-edit-key="aboutCopy">Rohozná leží 17 km jihozápadně od Jihlavy, v přírodě s lesy, rybníky, poli a loukami na okraji parku Čeřínek.</p>
+            <p class="section-copy" data-edit-key="aboutCopy" data-edit-html="true">Rohozná leží 17 km jihozápadně od Jihlavy,<br class="copy-break"> v přírodě s lesy, rybníky, poli a loukami<br class="copy-break"> na okraji parku Čeřínek.</p>
           </div>
           <div class="intro-grid">
             <div class="story reveal">
-              <p>Milí návštěvníci, těší nás, že jste zavítali na naše stránky. Dozvíte se, co nás baví a živí zároveň :-) Pokud nás budete chtít navštívit nebo u nás nakoupit, stačí zavolat nebo napsat a domluvíme se. Jste srdečně zváni :-)</p>
-              <p>Na západním okraji jihlavského okresu 17 km jihozápadně od Jihlavy leží v údolí Rohozenského potoka v nadmořské výšce 550 metrů obec Rohozná. Část rozlehlého katastru patří do přírodního parku Čeřínek. Nedotčená příroda s lesy, rybníky, poli a loukami. Náš ekostatek Bezděkovský mlýn se nachází v místní části Familie. Je to zemědělská usedlost, které sahá historie až do 16. století jako rohozenský mlýn. Rod Bezděkovských se píše od roku 1759, kdy Tomáš Bezděkovský vystavěl starý mlýn a žádal vrchnost, aby na něm mohl zůstat. Od té doby si zde Bezděkovští předávali své mlynářské řemeslo po další generace. Posledním mlynářem byl dědeček Josef Bezděkovský, který s láskou provozoval nejen své řemeslo, ale obhospodařoval i půdu, kterou ke mlýnu měl. Od roku 1993 se začalo u nás opět hospodařit. Nebylo to však již ve mlýnici pod jménem Bezděkovských, ale na polích jako Štěchovi :-) Od roku 2010 jsme se postupně začali rozrůstat. Převzali jsme pole a ovečky my, Řezníčkovi a pořídili si ještě masný skot. Nyní hospodaříme v režimu ekologického zemědělství na výměře 272 ha zemědělské půdy. Na orné půdě pěstujeme obilí, brambory, luskovinoobilní a jetelotravní směsky. Tím jsme schopni si udělat vlastní krmení. Na loukách sušíme seno. Stáda skotu se pasou od jara do podzimu na pastvinách. Na zimu jsou ustájena s možností výběhu.</p>
-              <p>Další informace a zajímavosti:<br><a href="https://vodnimlyny.cz/mlyny/mlyn/1144-bezdekovsky-mlyn" target="_blank" rel="noopener">Vodní mlýny</a><br><a href="https://www.rozhlas.cz/vysocina/toulky/_zprava/bydli-ve-mlyne-ale-mouku-nemelou-nabidnou-vam-ale-domaci-hovezi--1636919" target="_blank" rel="noopener">Český rozhlas</a><br><a href="https://www.rozhlas.cz/kraje/pochoutky/_zprava/1642843" target="_blank" rel="noopener">Český rozhlas</a></p>
+              <p data-edit-key="aboutText1">Milí návštěvníci, těší nás, že jste zavítali na naše stránky. Dozvíte se, co nás baví a živí zároveň :-) Pokud nás budete chtít navštívit nebo u nás nakoupit, stačí zavolat nebo napsat a domluvíme se. Jste srdečně zváni :-)</p>
+              <p data-edit-key="aboutText2">Na západním okraji jihlavského okresu 17 km jihozápadně od Jihlavy leží v údolí Rohozenského potoka v nadmořské výšce 550 metrů obec Rohozná. Část rozlehlého katastru patří do přírodního parku Čeřínek. Nedotčená příroda s lesy, rybníky, poli a loukami. Náš ekostatek Bezděkovský mlýn se nachází v místní části Familie. Je to zemědělská usedlost, které sahá historie až do 16. století jako rohozenský mlýn. Rod Bezděkovských se píše od roku 1759, kdy Tomáš Bezděkovský vystavěl starý mlýn a žádal vrchnost, aby na něm mohl zůstat. Od té doby si zde Bezděkovští předávali své mlynářské řemeslo po další generace. Posledním mlynářem byl dědeček Josef Bezděkovský, který s láskou provozoval nejen své řemeslo, ale obhospodařoval i půdu, kterou ke mlýnu měl. Od roku 1993 se začalo u nás opět hospodařit. Nebylo to však již ve mlýnici pod jménem Bezděkovských, ale na polích jako Štěchovi :-) Od roku 2010 jsme se postupně začali rozrůstat. Převzali jsme pole a ovečky my Řezníčkovi a pořídili si ještě masný skot. Nyní hospodaříme v režimu ekologického zemědělství na výměře 272 ha zemědělské půdy. Na orné půdě pěstujeme obilí, brambory, luskovinoobilní a jetelotravní směsky. Tím jsme schopni si udělat vlastní krmení. Na loukách sušíme seno. Stáda skotu se pasou od jara do podzimu na pastvinách. Na zimu jsou ustájena s možností výběhů nebo na zimovištích na hluboké a pravidelně stlané podestýlce.</p>
+              <p data-edit-key="aboutText3" data-edit-html="true">Další informace a zajímavosti:<br><a href="https://vodnimlyny.cz/mlyny/mlyn/1144-bezdekovsky-mlyn" target="_blank" rel="noopener">Vodní mlýny</a><br><a href="https://www.rozhlas.cz/vysocina/toulky/_zprava/bydli-ve-mlyne-ale-mouku-nemelou-nabidnou-vam-ale-domaci-hovezi--1636919" target="_blank" rel="noopener">Český rozhlas</a><br><a href="https://www.rozhlas.cz/kraje/pochoutky/_zprava/1642843" target="_blank" rel="noopener">Český rozhlas</a></p>
             </div>
             <aside class="facts reveal" aria-label="Základní údaje o statku">
               <div class="fact"><strong>16.</strong><span>století, první historie mlýna</span></div>
-              <div class="fact"><strong>272 ha</strong><span>zemědělské půdy v ekologickém režimu</span></div>
+              <div class="fact"><strong>272 ha</strong><span>zemědělské půdy v ekologickém režimu</span></div>
               <div class="fact"><strong>550 m</strong><span>nadmořská výška Rohozné</span></div>
             </aside>
           </div>
@@ -2112,17 +2754,17 @@
           <div class="section-head reveal">
             <div>
               <p class="section-kicker">Ekologické hospodaření</p>
-              <h2 data-edit-key="ecologyTitle">Hospodaříme bez chemických postřiků a průmyslových hnojiv</h2>
+              <h2 data-edit-key="ecologyTitle">Hospodaříme bez chemických postřiků a průmyslových hnojiv</h2>
             </div>
-            <p class="section-copy" data-edit-key="ecologyCopy">Doplňujeme, co dnes na statku děláme: pole, krmení, půdu, maso, telata, nektarodárné pásy i Den otevřených mlýnů.</p>
+            <p class="section-copy" data-edit-key="ecologyCopy" data-edit-html="true">Doplňujeme, co dnes na statku děláme:<br class="copy-break"> pole, krmení, půdu, maso, telata,<br class="copy-break"> nektarodárné pásy i Den otevřených mlýnů.</p>
           </div>
           <div class="ecology-grid">
             <article class="ecology-card reveal">
               <img class="portrait-safe" src="files/nahledy/1100/pole/marketka-v-obili.jpg" alt="Markétka v obilí" loading="lazy" decoding="async">
               <div class="ecology-copy">
-                <h3>Proč jsme přešli do ekologie</h3>
-                <p>Do ekologického hospodaření jsme přešli postupně z přesvědčení. Rodiče sice hospodařili konvenčně, ale brambory si nikdy chemicky nepostříkali.</p>
-                <p>Když nám do rodiny začaly přicházet naše děti a chtěly jezdit s tatínkem po polích, uvědomili jsme si, že nechceme, aby jezdily v traktorech od postřiků a průmyslových hnojiv. Po několika kamarádských návštěvách u Pepy Sklenáře na Biofarmě Sasov jsme došli k závěru, že jediná cesta pro zdraví našich dětí a nás vede do ekologie. Pepa nás svými radami a zkušenostmi podporoval a jsme rádi, že jsme ten správný krok udělali.</p>
+                <h3 data-edit-key="article1Text1">Proč jsme přešli do ekologie</h3>
+                <p data-edit-key="article1Text2">Do ekologického hospodaření jsme přešli postupně z přesvědčení. Rodiče sice hospodařili konvenčně, ale brambory si nikdy chemicky nepostříkali.</p>
+                <p data-edit-key="article1Text3">Když nám do rodiny začaly přicházet naše děti a chtěly jezdit s tatínkem po polích, uvědomili jsme si, že nechceme, aby jezdily v traktorech od postřiků a průmyslových hnojiv. Po několika kamarádských návštěvách u Pepy Sklenáře na Biofarmě Sasov jsme došli k závěru, že jediná cesta pro zdraví našich dětí a nás vede do ekologie. Pepa nás svými radami a zkušenostmi podporoval a jsme rádi, že jsme ten správný krok udělali.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
@@ -2131,9 +2773,9 @@
                 <img src="files/nahledy/1100/pole/balik-senaze.jpg" alt="Senážní balík" loading="lazy" decoding="async">
               </div>
               <div class="ecology-copy">
-                <h3>Jetelotravní senáže</h3>
-                <p>Jetelotravní senáže čistí pole, když je na 2-3 roky zařadíme do osevního postupu a děláme 2-3 seče ročně. Každý rok si pravidelně zakládáme nové porosty pro dostatek krmení. Nespoléháme se jen na louky. Sečeme mladý porost v odpoledních hodinách, aby měl dostatek cukrů, senáž lépe fermentovala a měla dostatek energie. Tím lehce výživově nahradíme kukuřici.</p>
-                <p>Před sečením se procházejí porosty, aby se zabránilo posečení srnčat. V porostu necháváme neposečené pásy pro včely, motýly a různé broučky.</p>
+                <h3 data-edit-key="article2Text1">Jetelotravní senáže</h3>
+                <p data-edit-key="article2Text2">Jetelotravní senáže čistí pole, když je na 2-3 roky zařadíme do osevního postupu a děláme 2-3 seče ročně. Každý rok si pravidelně zakládáme nové porosty pro dostatek krmení. Nespoléháme se jen na louky. Sečeme mladý porost v odpoledních hodinách, aby měl dostatek cukrů, senáž lépe fermentovala a měla dostatek energie. Tím lehce výživově nahradíme kukuřici.</p>
+                <p data-edit-key="article2Text3">Před sečením se procházejí porosty, aby se zabránilo posečení srnčat. V porostu necháváme neposečené pásy pro včely, motýly a různé broučky.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
@@ -2142,8 +2784,8 @@
                 <img src="files/fotky/pole/zapraveni-hnoje.jpg" alt="Zapravení hnoje" loading="lazy" decoding="async">
               </div>
               <div class="ecology-copy">
-                <h3>Hnojení</h3>
-                <p>Hnojení je důležitá součást zemědělství. Hnůj se musí vrátit na pole, protože zlepšuje stav půdy a jeho včasné zapravení zabrání úniku dusíku do ovzduší. Naše půda je živá a hospodaří na ní také žížaly.</p>
+                <h3 data-edit-key="article3Text1">Hnojení</h3>
+                <p data-edit-key="article3Text2">Hnojení je důležitá součást zemědělství. Hnůj se musí vrátit na pole, protože zlepšuje stav půdy a jeho včasné zapravení zabrání úniku dusíku do ovzduší. Naše půda je živá a hospodaří na ní také žížaly.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
@@ -2153,8 +2795,8 @@
                 <img src="files/fotky/pole/seti-pelusky.jpg" alt="Setí pelušky" loading="lazy" decoding="async">
               </div>
               <div class="ecology-copy">
-                <h3>Peluška</h3>
-                <p>Peluška je pro nás výborná plodina. Osivo nakupujeme certifikované BIO nebo žádáme o výjimku na UKZUZ (na osivové porosty). Máme z ní troje využití. Dodá půdě dusík, vyrobíme z ní bio osivo a po vytřídění se nám vrátí jako kvalitní bílkovinné krmivo, které mačkáme pro výkrm býků a pro telátka.</p>
+                <h3 data-edit-key="article4Text1">Peluška</h3>
+                <p data-edit-key="article4Text2">Peluška je pro nás výborná plodina. Osivo nakupujeme certifikované BIO nebo žádáme o výjimku na ÚKZÚZ (na osivové porosty). Máme z ní troje využití. Dodá půdě dusík, vyrobíme z ní bio osivo a po vytřídění se nám vrátí jako kvalitní bílkovinné krmivo, které mačkáme pro výkrm býků a pro telátka.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
@@ -2164,26 +2806,26 @@
                 <img src="files/nahledy/1100/pole/obili-pri-zapadu-slunce.jpg" alt="Obilí při západu slunce" loading="lazy" decoding="async">
               </div>
               <div class="ecology-copy">
-                <h3>Čisté porosty</h3>
-                <p>I kombajnér se občas diví, že máme krásné čisté porosty 😀</p>
+                <h3 data-edit-key="article5Text1">Čisté porosty</h3>
+                <p data-edit-key="article5Text2">I kombajnér se občas diví, že máme krásné čisté porosty 😀</p>
               </div>
             </article>
             <article class="ecology-card reveal">
               <img src="files/nahledy/1100/produkty/balicky-hoveziho-masa.jpg" alt="Maso" loading="lazy" decoding="async">
               <div class="ecology-copy">
-                <h3>Kvalitní bio maso</h3>
-                <p>Díky polím, loukám a pastvinám bez chemických postřiků a hnojiv máme kvalitní maso a produkty rostlinné výroby, které jsou označené jako Bio. Maso je chutné, šťavnaté a křehké. Po porážce maso zraje ve čtvrtích 2-3 týdny při teplotě 1-2°C. Po rozbourání zraje další 2-3 týdny ve vakuu.</p>
-                <p>Pokud zvíře potřebuje lék, je nutná dvojnásobná ochranná lhůta, aby maso bylo beze zbytku léčiv.</p>
+                <h3 data-edit-key="article6Text1">Kvalitní bio maso</h3>
+                <p data-edit-key="article6Text2">Díky polím, loukám a pastvinám bez chemických postřiků a hnojiv máme kvalitní maso a produkty rostlinné výroby, které jsou označené jako Bio. Maso je chutné, šťavnaté a křehké. Po porážce maso zraje ve čtvrtích 2-3 týdny při teplotě 1-2°C. Po rozbourání zraje další 2-3 týdny ve vakuu.</p>
+                <p data-edit-key="article6Text3">Pokud zvíře potřebuje lék, je nutná dvojnásobná ochranná lhůta, aby maso bylo beze zbytku léčiv.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
               <div class="ecology-media">
                 <img src="files/fotky/skot/skot-na-louce.jpg" alt="Skot na louce" loading="lazy" decoding="async">
-                <img src="files/nahledy/1100/skot/telata-pod-stromy.jpg" alt="Skupina telat pod stromy" loading="lazy" decoding="async">
+                <img src="files/fotky/skot/kravy-na-statku.jpg" alt="Telátka na pastvě" loading="lazy" decoding="async">
               </div>
               <div class="ecology-copy">
-                <h3>Telata</h3>
-                <p>Telata potřebují perfektní základ proto, aby z nich vyrostli pěkní býci na výkrm a jalovice do chovu. Je pro ně důležitý pobyt s matkou, která jim dopřává neomezené množství mateřského mléka a pak dostávájí podle chuti do příkrmiště dostatek mačkaného bioobilí (pšenice, triticale, oves, ječmen s peluškou a minerální směs). Telata spolu běhají na pastvině ve skupinkách, hrají si a poskakují. Odstavují se od mamin v době, kdy jsou již pohlavně dospělá a znají od mamin nejen pastvu, ale i chuť kvalitní senáže.</p>
+                <h3 data-edit-key="article7Text1">Telata</h3>
+                <p data-edit-key="article7Text2">Telata potřebují perfektní základ proto, aby z nich vyrostli pěkní býci na výkrm a jalovice do chovu. Je pro ně důležitý pobyt s matkou, která jim dopřává neomezené množství mateřského mléka a pak dostávájí podle chuti do příkrmiště dostatek mačkaného bioobilí (pšenice, triticale, oves, ječmen s peluškou a minerální směs). Telata spolu běhají na pastvině ve skupinkách, hrají si a poskakují. Odstavují se od mamin v době, kdy jsou již pohlavně dospělá a znají od mamin nejen pastvu, ale i chuť kvalitní senáže.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
@@ -2192,16 +2834,16 @@
                 <img src="files/fotky/pole/nektarodarny-pas.jpg" alt="Celý nektarodárný pás se slunečnicemi" loading="lazy" decoding="async">
               </div>
               <div class="ecology-copy">
-                <h3>Nektarodárné pásy</h3>
-                <p>Nektarodárné pásy jsme začali zakládat, aby i včelky měly svoji pastvu v době, kdy je už všechno odkvetlé. Směs se skládá z pohanky, svazenky, mastňáku, béru, slunečnice a několika druhů jetelů. Kvete postupně a dlouho do podzimu. Necháváme ho i přes zimu, aby mohli ptáci vyzobávat semínka. Také je krásným úkrytem nejen pro ptáky, ale i pro srnky a zajíce.</p>
+                <h3 data-edit-key="article8Text1">Nektarodárné pásy</h3>
+                <p data-edit-key="article8Text2">Nektarodárné pásy jsme začali zakládat, aby i včelky měly svoji pastvu v době, kdy je už všechno odkvetlé. Směs se skládá z pohanky, svazenky, mastňáku, béru, slunečnice a několika druhů jetelů. Kvete postupně a dlouho do podzimu. Necháváme ho i přes zimu, aby mohli ptáci vyzobávat semínka. Také je krásným úkrytem nejen pro ptáky, ale i pro srnky a zajíce.</p>
               </div>
             </article>
             <article class="ecology-card reveal">
               <img src="files/nahledy/1100/mlyn/den-otevrenych-mlynu.jpg" alt="Den otevřených mlýnů" loading="lazy" decoding="async">
               <div class="ecology-copy">
-                <h3>Den otevřených mlýnů</h3>
-                <p>Od roku 2024 se účastníme celorepublikového Dne otevřených mlýnů.</p>
-                <p><a href="#den-otevrenych-mlynu-2026">Plakát a fotky z roku 2026</a></p>
+                <h3 data-edit-key="article9Text1">Den otevřených mlýnů</h3>
+                <p data-edit-key="article9Text2">Od roku 2024 se účastníme celorepublikového Dne otevřených mlýnů.</p>
+                <p data-edit-key="article9Text3" data-edit-html="true"><a href="#den-otevrenych-mlynu-2026">Plakát a fotky z roku 2026</a></p>
               </div>
             </article>
           </div>
@@ -2213,46 +2855,46 @@
           <div class="section-head reveal">
             <div>
               <p class="section-kicker">Naše produkty</p>
-              <h2 data-edit-key="productsTitle">To, co vypěstujeme a vychováme, nabízíme dál</h2>
+              <h2 data-edit-key="productsTitle">To, co vypěstujeme a vychováme, nabízíme dál</h2>
             </div>
-            <p class="section-copy" data-edit-key="productsCopy">Maso, obilí a vajíčka od hospodářství, které stojí na vlastním krmení, pastvinách a trpělivé práci.</p>
+            <p class="section-copy" data-edit-key="productsCopy" data-edit-html="true">Maso, obilí a vajíčka z hospodářství,<br class="copy-break"> které stojí na vlastním krmení,<br class="copy-break"> pastvinách a trpělivé práci.</p>
           </div>
           <div class="product-grid">
             <article class="product reveal">
               <img src="files/nahledy/1100/produkty/balicky-hoveziho-masa.jpg" alt="Balíčky hovězího masa" loading="lazy" decoding="async">
               <div class="product-body">
-                <h3>Hovězí maso</h3>
-                <p>Zrání masa a použití partií masa se upravuje podle šéfkuchaře :-)</p>
+                <h3 data-edit-key="article10Text1">Hovězí maso</h3>
+                <p data-edit-key="article10Text2">Zrání masa a použití partií masa se upravuje podle šéfkuchaře :-)</p>
               </div>
             </article>
             <article class="product reveal">
               <img src="files/fotky/ostatni-zvirata/slepice-na-pastvine.jpg" alt="Vajíčka z pastvin" loading="lazy" decoding="async">
               <div class="product-body">
-                <h3>Vajíčka</h3>
-                <p>Kdo má rád vajíčka, jistě ocení, že naše slípky běhají po pastvinách a sezobnou nač mají chuť, hlavně dostatek čerstvé trávy. Díky tomu nás pak obdarují chutnými vajíčky s krásnými žlutými žloutky. Pekařky pak ocení krásné žluté těsto na buchty :-) Výživoví poradci vajíčka doporučují jako přirozený zdroj bílkovin a schvalují jejich pojídání i několikrát týdně.</p>
+                <h3 data-edit-key="article11Text1">Vajíčka</h3>
+                <p data-edit-key="article11Text2">Kdo má rád vajíčka, jistě ocení, že naše slípky běhají po pastvinách a sezobnou nač mají chuť, hlavně dostatek čerstvé trávy. Díky tomu nás pak obdarují chutnými vajíčky s krásnými žlutými žloutky. Pekařky pak ocení krásné žluté těsto na buchty :-) Výživoví poradci vajíčka doporučují jako přirozený zdroj bílkovin a schvalují jejich pojídání i několikrát týdně.</p>
               </div>
             </article>
             <article class="product reveal">
               <img src="files/fotky/skot/aberdeen-angus-dvojcatka.jpg" alt="Černá kráva plemene Aberdeen Angus se dvěma telátky" loading="lazy" decoding="async">
               <div class="product-body">
-                <h3>Kravičky</h3>
-                <p>V roce 2010 jsme si přivezli prvních 7 jalovic Aberdeen Angus. A když k nim přibyl náš první plemenný býk Matěj I., začali jsme se těšit na první telátka. A pak už postupně přibývali další :-)</p>
+                <h3 data-edit-key="article12Text1">Kravičky</h3>
+                <p data-edit-key="article12Text2">V roce 2010 jsme si přivezli prvních 7 jalovic Aberdeen Angus. A když k nim přibyl náš první plemenný býk Matěj I., začali jsme se těšit na první telátka. A pak už postupně přibývali další :-)</p>
               </div>
             </article>
             <article class="product reveal">
               <img src="files/nahledy/1100/skot/kravy-plemene-aubrac.jpg" alt="Rohaté krávy plemene Aubrac na pastvině" loading="lazy" decoding="async">
               <div class="product-body">
-                <h3>Plemeno Aubrac</h3>
-                <p>V současné době jsme rozšířili náš chov o masné plemeno Aubrac. Pochází z benediktinského opatství v jižní Francii. Je to velmi odolné plemeno, které dobře snáší hory, ale i teplé a suché oblasti. Dokáže udělat vysoký přírůstek na pastvinách horší kvality.</p>
+                <h3 data-edit-key="article13Text1">Plemeno Aubrac</h3>
+                <p data-edit-key="article13Text2">V současné době jsme rozšířili náš chov o masné plemeno Aubrac. Pochází z benediktinského opatství v jižní Francii. Je to velmi odolné plemeno, které dobře snáší hory, ale i teplé a suché oblasti. Dokáže udělat vysoký přírůstek na pastvinách horší kvality.</p>
               </div>
             </article>
             <article class="product reveal">
               <img src="files/fotky/ostatni-zvirata/kone-na-pastvine.jpg" alt="Koně na pastvině" loading="lazy" decoding="async">
               <div class="product-body">
-                <h3>Koníci</h3>
-                <p>Koníci patří také na statek a tak se k nám nejdříve dostal Slezský norik Blesk, který se dožil 27 let. Valach, který celý život pracoval v lese a na našich pastvinách si užíval už jen zaslouženého odpočinku :-)</p>
-                <p>Aby Bleskovi nebylo smutno, přibyla k němu kobylka Haflinga Zuzana, která se dožila 24 let a obdarovala nás dvěma hříbaty – Nugetou a Hříbkem. Jako zasloužilá matka si také užívala klid na pastvinách :-)</p>
-                <p>Po odchodu Bleska se k nám dostala kobylka Českomoravského belgika Sindy, od které máme také dvě hříbata - Marcuse a Bleska.</p>
+                <h3 data-edit-key="article14Text1">Koníci</h3>
+                <p data-edit-key="article14Text2">Koníci patří také na statek a tak se k nám nejdříve dostal Slezský norik Blesk, který se dožil 27 let. Valach, který celý život pracoval v lese a na našich pastvinách si užíval už jen zaslouženého odpočinku :-)</p>
+                <p data-edit-key="article14Text3">Aby Bleskovi nebylo smutno, přibyla k němu kobylka Haflinga Zuzana, která se dožila 24 let a obdarovala nás dvěma hříbaty – Nugetou a Hříbkem. Jako zasloužilá matka si také užívala klid na pastvinách :-)</p>
+                <p data-edit-key="article14Text4">Po odchodu Bleska se k nám dostala kobylka Českomoravského belgika Sindy, od které máme také dvě hříbata - Marcuse a Bleska.</p>
                 <div class="horse-photos" data-lightbox-group="horses">
                   <a href="files/fotky/ostatni-zvirata/blesk-a-marcus.jpg" target="_blank" rel="noopener"><img src="files/nahledy/1100/ostatni-zvirata/blesk-a-marcus.jpg" alt="Blesk a Marcus" loading="lazy" decoding="async"></a>
                   <a href="files/fotky/ostatni-zvirata/nugeta-na-slame.jpg" target="_blank" rel="noopener"><img src="files/nahledy/1100/ostatni-zvirata/nugeta-na-slame.jpg" alt="Nugeta odpočívá na slámě" loading="lazy" decoding="async"></a>
@@ -2263,8 +2905,8 @@
             <article class="product reveal">
               <img src="files/nahledy/1100/pole/pole-u-lesa.jpg" alt="Obilí z polí" loading="lazy" decoding="async">
               <div class="product-body">
-                <h3>Obilí</h3>
-                <p>Na orné půdě pěstujeme obilí pro naše zvířata. Nejčastěji uvidíte pšenici, ječmen, oves a tritikale. Když můžeme našim mazlíkům dopřát, tak do obilí přisejeme ještě hrách nebo pelušku. Malým chovatelům prodáváme obilí v pytlích podle potřeby. Produkujeme také certifikovaná osiva.</p>
+                <h3 data-edit-key="article15Text1">Obilí</h3>
+                <p data-edit-key="article15Text2">Na orné půdě pěstujeme obilí pro naše zvířata. Nejčastěji uvidíte pšenici, ječmen, oves a tritikale. Když můžeme našim mazlíkům dopřát, tak do obilí přisejeme ještě hrách nebo pelušku. Malým chovatelům prodáváme obilí v pytlích podle potřeby. Produkujeme také certifikovaná osiva.</p>
               </div>
             </article>
           </div>
@@ -2276,7 +2918,7 @@
           <div class="section-head reveal">
             <div>
               <p class="section-kicker">Ceník</p>
-              <h2 data-edit-key="pricingTitle">Hovězí balíčky a partie masa</h2>
+              <h2 data-edit-key="pricingTitle">Hovězí balíčky a partie masa</h2>
             </div>
             <p class="section-copy" data-edit-key="pricingCopy" data-edit-html="true">Nabízíme také <a href="files/dokumenty/poukaz1.jpg" target="_blank">dárkové poukazy</a>. Ceny jsou uvedené podle původního ceníku.</p>
           </div>
@@ -2315,8 +2957,115 @@
                   <li>roštěná + váleček + vysoký roštěnec</li>
                 </ul>
               </article>
-              <p class="download-note">Podklady k masu: <a href="files/dokumenty/zrani-masa.jpg" target="_blank">zrání hovězího masa</a>, <a href="files/dokumenty/partie-hoveziho-masa.jpg" target="_blank">partie masa</a>, <a href="files/dokumenty/upravy-hoveziho-masa.jpg" target="_blank">úpravy masa</a>.</p>
+              <p class="download-note">Podklady k masu: <a href="files/dokumenty/zrani-masa.jpg" target="_blank">zrání hovězího masa</a>, <a href="files/dokumenty/partie-hoveziho-masa.jpg" target="_blank">partie masa</a>, <a href="files/dokumenty/upravy-hoveziho-masa.jpg" target="_blank">úpravy masa</a>.</p><details class="meat-aging" id="zrani-masa"><summary>Jak zraje naše hovězí maso</summary><p>Naše hovězí maso je vyzrálé neboli stařené. Po porážce nejdříve zraje suchým způsobem ve čtvrtích, při stálé teplotě a vlhkosti v chladících boxech po dobu 14-21 dní. Poté je maso rozbouráno, zavakuováno a dále zraje mokrým způsobem přímo ve vakuu.</p><p>Během procesu zrání dochází k povolování svaloviny a tím křehnutí masa.</p><p>Steak nebo pečeně z vyzrálého masa bude křehčí a šťavnatější než z konvenčního masa. Během zrání se vytváří v mase kyselina mléčná, která způsobuje typický nakyslý odér, který ovšem není na závadu. Vyskytne-li se v balení nazelenalá šťáva ( nikoli maso) nejedná se o vadu, ale přirozený průvodní jev vyzrálosti.</p><p>Vyzrálé maso před použitím jemně omyjte vodou a ihned osušte. Maso bez kosti má od zabalení 20-denní min. trvanlivost, při neporušeném obalu jej ale můžete nechat vyzrát doma v chladničce při teplotě okolo 2°C dle individuálních preferencí.</p><p>PŘEJEME RADOST Z VAŘENÍ</p><p>A DOBROU CHUŤ :-)</p></details>
+
             </div>
+      <section class="section soft" id="poptavka">
+        <div class="container">
+          <div class="inquiry-card">
+            <div class="inquiry-intro">
+              <p class="section-kicker">Přímo od nás</p>
+              <h2>Hovězí maso ze statku</h2>
+              <p>Napište nám, co si přejete. Domluvíme se na dostupnosti a termínu vyzvednutí.</p>
+            </div>
+            <form class="inquiry-form" id="inquiryForm" novalidate action="https://formspree.io/f/mvkanpvj" data-formspree-id="mvkanpvj" method="POST">
+              <input type="hidden" name="subject" value="Poptávka masa – Bezděkovský mlýn">
+              <div class="form-field full">
+                <label for="productTrigger" id="productLabel">O co máte zájem <span aria-hidden="true">*</span></label>
+                <div class="product-choice" id="productChoice">
+                <select id="inquiryProduct" name="Produkt" required>
+                  <option value="" selected disabled>Vyberte ze seznamu</option>
+                  <option value="Hovězí balíček 5 kg" data-price-key="price5kg">Hovězí balíček 5 kg · 310 Kč/kg</option>
+                  <option value="Hovězí balíček 10 kg" data-price-key="price10kg">Hovězí balíček 10 kg · 310 Kč/kg</option>
+                  <option value="Hovězí balíček 15 kg" data-price-key="price15kg">Hovězí balíček 15 kg · 310 Kč/kg</option>
+                  <option value="Žebra" data-price-key="priceZebra">Žebra · 200 Kč/kg</option>
+                  <option value="Pupek" data-price-key="pricePupek">Pupek · 290 Kč/kg</option>
+                  <option value="Krk" data-price-key="priceKrk">Krk · 330 Kč/kg</option>
+                  <option value="Kližka" data-price-key="priceKlizka">Kližka · 340 Kč/kg</option>
+                  <option value="Maso na guláš" data-price-key="priceGulas">Maso na guláš · 350 Kč/kg</option>
+                  <option value="Plec" data-price-key="pricePlec">Plec · 380 Kč/kg</option>
+                  <option value="Zadní" data-price-key="priceZadni">Zadní · 490 Kč/kg</option>
+                  <option value="Vysoký roštěnec" data-price-key="priceVysokyRostenec">Vysoký roštěnec · 590 Kč/kg</option>
+                  <option value="Roštěná" data-price-key="priceRostena">Roštěná · 600 Kč/kg</option>
+                  <option value="Váleček" data-price-key="priceValecek">Váleček · 600 Kč/kg</option>
+                  <option value="Veverka" data-price-key="priceVeverka">Veverka · 600 Kč/kg</option>
+                  <option value="Svíčková" data-price-key="priceSvickova">Svíčková · 1100 Kč/kg</option>
+                  <option value="Líčka" data-price-key="priceLicka">Líčka · 330 Kč/kg</option>
+                  <option value="Oháňka" data-price-key="priceOhanka">Oháňka · 160 Kč/kg</option>
+                  <option value="Játra" data-price-key="priceJatra">Játra · 120 Kč/kg</option>
+                  <option value="Srdce" data-price-key="priceSrdce">Srdce · 120 Kč/kg</option>
+                  <option value="Jazyk" data-price-key="priceJazyk">Jazyk · 140 Kč/kg</option>
+                  <option value="Ledvinky" data-price-key="priceLedvinky">Ledvinky · 100 Kč/kg</option>
+                  <option value="Býčí žlázy" data-price-key="priceByciZlazy">Býčí žlázy · 90 Kč/ks</option>
+                  <option value="Dršťky prané" data-price-key="priceDrstky">Dršťky prané · 150 Kč/kg</option>
+                  <option value="Morkové kosti" data-price-key="priceKosti">Morkové kosti · 80 Kč/kg</option>
+                  <option value="Ossobuco" data-price-key="priceOssobuco">Ossobuco · 450 Kč/kg</option>
+                  <option value="Smíšený balíček" data-price-key="priceSmiseny">Smíšený balíček · 310 Kč/kg</option>
+                  <option value="Pro psy" data-price-key="pricePsi">Pro psy · 80 Kč/kg</option>
+                  <option value="Flank steak" data-price-key="priceFlank">Flank steak · 450 Kč/kg</option>
+                </select>
+                  <button class="choice-trigger" id="productTrigger" type="button" role="combobox"
+                    aria-haspopup="listbox" aria-expanded="false" aria-controls="productOptions"
+                    aria-labelledby="productLabel productValue" aria-required="true" hidden>
+                    <span id="productValue">Vyberte produkt</span><span class="choice-chevron" aria-hidden="true"></span>
+                  </button>
+                  <ul class="choice-menu" id="productOptions" role="listbox" aria-labelledby="productLabel" hidden>
+                    <li role="option" id="product-option-0" aria-selected="false" data-value="Hovězí balíček 5 kg" data-price-key="price5kg"><span class="choice-label">Hovězí balíček 5 kg</span><span class="choice-price">310 Kč/kg</span></li>
+                    <li role="option" id="product-option-1" aria-selected="false" data-value="Hovězí balíček 10 kg" data-price-key="price10kg"><span class="choice-label">Hovězí balíček 10 kg</span><span class="choice-price">310 Kč/kg</span></li>
+                    <li role="option" id="product-option-2" aria-selected="false" data-value="Hovězí balíček 15 kg" data-price-key="price15kg"><span class="choice-label">Hovězí balíček 15 kg</span><span class="choice-price">310 Kč/kg</span></li>
+                    <li role="option" id="product-option-3" aria-selected="false" data-value="Žebra" data-price-key="priceZebra"><span class="choice-label">Žebra</span><span class="choice-price">200 Kč/kg</span></li>
+                    <li role="option" id="product-option-4" aria-selected="false" data-value="Pupek" data-price-key="pricePupek"><span class="choice-label">Pupek</span><span class="choice-price">290 Kč/kg</span></li>
+                    <li role="option" id="product-option-5" aria-selected="false" data-value="Krk" data-price-key="priceKrk"><span class="choice-label">Krk</span><span class="choice-price">330 Kč/kg</span></li>
+                    <li role="option" id="product-option-6" aria-selected="false" data-value="Kližka" data-price-key="priceKlizka"><span class="choice-label">Kližka</span><span class="choice-price">340 Kč/kg</span></li>
+                    <li role="option" id="product-option-7" aria-selected="false" data-value="Maso na guláš" data-price-key="priceGulas"><span class="choice-label">Maso na guláš</span><span class="choice-price">350 Kč/kg</span></li>
+                    <li role="option" id="product-option-8" aria-selected="false" data-value="Plec" data-price-key="pricePlec"><span class="choice-label">Plec</span><span class="choice-price">380 Kč/kg</span></li>
+                    <li role="option" id="product-option-9" aria-selected="false" data-value="Zadní" data-price-key="priceZadni"><span class="choice-label">Zadní</span><span class="choice-price">490 Kč/kg</span></li>
+                    <li role="option" id="product-option-10" aria-selected="false" data-value="Vysoký roštěnec" data-price-key="priceVysokyRostenec"><span class="choice-label">Vysoký roštěnec</span><span class="choice-price">590 Kč/kg</span></li>
+                    <li role="option" id="product-option-11" aria-selected="false" data-value="Roštěná" data-price-key="priceRostena"><span class="choice-label">Roštěná</span><span class="choice-price">600 Kč/kg</span></li>
+                    <li role="option" id="product-option-12" aria-selected="false" data-value="Váleček" data-price-key="priceValecek"><span class="choice-label">Váleček</span><span class="choice-price">600 Kč/kg</span></li>
+                    <li role="option" id="product-option-13" aria-selected="false" data-value="Veverka" data-price-key="priceVeverka"><span class="choice-label">Veverka</span><span class="choice-price">600 Kč/kg</span></li>
+                    <li role="option" id="product-option-14" aria-selected="false" data-value="Svíčková" data-price-key="priceSvickova"><span class="choice-label">Svíčková</span><span class="choice-price">1100 Kč/kg</span></li>
+                    <li role="option" id="product-option-15" aria-selected="false" data-value="Líčka" data-price-key="priceLicka"><span class="choice-label">Líčka</span><span class="choice-price">330 Kč/kg</span></li>
+                    <li role="option" id="product-option-16" aria-selected="false" data-value="Oháňka" data-price-key="priceOhanka"><span class="choice-label">Oháňka</span><span class="choice-price">160 Kč/kg</span></li>
+                    <li role="option" id="product-option-17" aria-selected="false" data-value="Játra" data-price-key="priceJatra"><span class="choice-label">Játra</span><span class="choice-price">120 Kč/kg</span></li>
+                    <li role="option" id="product-option-18" aria-selected="false" data-value="Srdce" data-price-key="priceSrdce"><span class="choice-label">Srdce</span><span class="choice-price">120 Kč/kg</span></li>
+                    <li role="option" id="product-option-19" aria-selected="false" data-value="Jazyk" data-price-key="priceJazyk"><span class="choice-label">Jazyk</span><span class="choice-price">140 Kč/kg</span></li>
+                    <li role="option" id="product-option-20" aria-selected="false" data-value="Ledvinky" data-price-key="priceLedvinky"><span class="choice-label">Ledvinky</span><span class="choice-price">100 Kč/kg</span></li>
+                    <li role="option" id="product-option-21" aria-selected="false" data-value="Býčí žlázy" data-price-key="priceByciZlazy"><span class="choice-label">Býčí žlázy</span><span class="choice-price">90 Kč/ks</span></li>
+                    <li role="option" id="product-option-22" aria-selected="false" data-value="Dršťky prané" data-price-key="priceDrstky"><span class="choice-label">Dršťky prané</span><span class="choice-price">150 Kč/kg</span></li>
+                    <li role="option" id="product-option-23" aria-selected="false" data-value="Morkové kosti" data-price-key="priceKosti"><span class="choice-label">Morkové kosti</span><span class="choice-price">80 Kč/kg</span></li>
+                    <li role="option" id="product-option-24" aria-selected="false" data-value="Ossobuco" data-price-key="priceOssobuco"><span class="choice-label">Ossobuco</span><span class="choice-price">450 Kč/kg</span></li>
+                    <li role="option" id="product-option-25" aria-selected="false" data-value="Smíšený balíček" data-price-key="priceSmiseny"><span class="choice-label">Smíšený balíček</span><span class="choice-price">310 Kč/kg</span></li>
+                    <li role="option" id="product-option-26" aria-selected="false" data-value="Pro psy" data-price-key="pricePsi"><span class="choice-label">Pro psy</span><span class="choice-price">80 Kč/kg</span></li>
+                    <li role="option" id="product-option-27" aria-selected="false" data-value="Flank steak" data-price-key="priceFlank"><span class="choice-label">Flank steak</span><span class="choice-price">450 Kč/kg</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="inquiryName">Jméno a příjmení <span aria-hidden="true">*</span></label>
+                <input placeholder="Vaše jméno" id="inquiryName" name="name" autocomplete="name" maxlength="120" required>
+              </div>
+              <div class="form-field">
+                <label for="inquiryPhone">Telefon <span aria-hidden="true">*</span></label>
+                <input placeholder="+420" id="inquiryPhone" name="Telefon" type="tel" autocomplete="tel" maxlength="40" required>
+              </div>
+              <div class="form-field full">
+                <label for="inquiryEmail">E-mailová adresa <span aria-hidden="true">*</span></label>
+                <input placeholder="vas@email.cz" id="inquiryEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+              </div>
+              <div class="form-field full">
+                <label for="inquiryMessage">Množství a další poznámky <span class="optional">(nepovinné)</span></label>
+                <textarea id="inquiryMessage" name="message" rows="4" maxlength="4000" placeholder="Například počet balíčků nebo požadované partie masa"></textarea>
+              </div>
+              <div class="full inquiry-footer">
+                <button class="button" type="submit">Odeslat nezávaznou poptávku</button>
+                <noscript><p>Pro odeslání formuláře prosím zapněte JavaScript nebo nás kontaktujte telefonicky.</p></noscript><p class="inquiry-note" id="inquiryNote">Vaše kontaktní údaje použijeme k vyřízení poptávky.</p>
+                <p id="inquiryStatus" role="status" aria-live="polite" tabindex="-1"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
             <div class="price-table-wrap reveal">
               <table>
                 <thead>
@@ -2362,9 +3111,9 @@
           <div class="section-head reveal">
             <div>
               <p class="section-kicker">Fotogalerie</p>
-              <h2 data-edit-key="galleryTitle">Pastviny, obilí, koně, mlýnice a život kolem mlýna</h2>
+              <h2 data-edit-key="galleryTitle">Pastviny, obilí, koně, mlýnice a život kolem mlýna</h2>
             </div>
-            <p class="section-copy" data-edit-key="galleryCopy">Fotky ze statku, mlýnice, polních prací a hospodářských zvířat. Kategorie lze rychle filtrovat.</p>
+            <p class="section-copy" data-edit-key="galleryCopy" data-edit-html="true">Fotky ze statku, mlýnice, polních prací<br class="copy-break"> a hospodářských zvířat.<br class="copy-break"> Kategorie lze rychle filtrovat.</p>
           </div>
           <div class="filters reveal" aria-label="Filtr fotogalerie">
             <button class="filter-button active" type="button" data-filter="all">Všechny</button>
@@ -2375,72 +3124,72 @@
             <button class="filter-button" type="button" data-filter="ost">Ostatní</button>
           </div>
           <div class="gallery-grid reveal">
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/kravy-na-statku.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/kravy-na-statku.jpg" alt="Kravičky na statku"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/kravy-na-statku.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/kravy-na-statku.jpg" alt="Telátka na pastvě"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/aubrac-pri-zapadu-slunce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/aubrac-pri-zapadu-slunce.jpg" alt="Skot Aubrac při západu slunce" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/rohata-krava-na-pastvine.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/rohata-krava-na-pastvine.jpg" alt="Rohatá kráva na pastvině" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/rohata-krava-zblizka.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/rohata-krava-zblizka.jpg" alt="Rohatá kráva zblízka" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-proti-obloze.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-proti-obloze.jpg" alt="Rohatá kráva proti obloze" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/rohata-krava-na-pastvine.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/rohata-krava-na-pastvine.jpg" alt="Kráva Aubrac s typickými lyrovitými rohy" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/rohata-krava-zblizka.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/rohata-krava-zblizka.jpg" alt="Kráva Aubrac s typickými lyrovitými rohy" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-proti-obloze.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-proti-obloze.jpg" alt="Kráva Aubrac s typickými lyrovitými rohy" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/kravy-za-soumraku.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/kravy-za-soumraku.jpg" alt="Krávy na pastvině za soumraku" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerna-krava-s-teletem.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/cerna-krava-s-teletem.jpg" alt="Černá kráva s teletem" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerna-krava-s-teletem.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/cerna-krava-s-teletem.jpg" alt="Kráva Aberdeen angus a tele kříženec s býkem Aubrac" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-u-lesa.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-u-lesa.jpg" alt="Tele na pastvině u lesa" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-odpociva.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-odpociva.jpg" alt="Kráva odpočívá v trávě" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-s-teletem-zblizka.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-s-teletem-zblizka.jpg" alt="Kráva s teletem na pastvině" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-u-matky.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-u-matky.jpg" alt="Tele u černé krávy" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-u-zlabu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-u-zlabu.jpg" alt="Tele ve stáji u žlabu" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-u-matky.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-u-matky.jpg" alt="Kráva Aberdeen angus a tele kříženec s býkem Aubrac" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-u-zlabu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-u-zlabu.jpg" alt="Telátko staré 2 dny" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-na-slame.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-na-slame.jpg" alt="Tele odpočívá na slámě" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-na-podzimni-pastvine.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/tele-na-podzimni-pastvine.jpg" alt="Tele na podzimní pastvině" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/byk-chaplin.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/byk-chaplin.jpg" alt="Býk Chaplin na pastvině" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerna-krava-v-porostu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/cerna-krava-v-porostu.jpg" alt="Černá kráva v porostu" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/byk-chaplin.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/byk-chaplin.jpg" alt="Plemenný býk Chaplin – plemeno Aubrac" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerna-krava-v-porostu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/cerna-krava-v-porostu.jpg" alt="Kráva Aberdeen angus (AA)" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/stado-za-kvetouci-loukou.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/stado-za-kvetouci-loukou.jpg" alt="Stádo za kvetoucí loukou" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/aubrac-na-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/aubrac-na-louce.jpg" alt="Stádo Aubrac na louce" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerna-krava-na-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/cerna-krava-na-louce.jpg" alt="Černá kráva na louce" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerna-krava-na-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/cerna-krava-na-louce.jpg" alt="Stádo Aubrac na louce" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-u-smrku.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/skot-u-smrku.jpg" alt="Stádo na pastvině u smrků" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-v-kvetouci-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/skot-v-kvetouci-louce.jpg" alt="Skot na kvetoucí louce" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/aubrac-na-svahu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/aubrac-na-svahu.jpg" alt="Stádo Aubrac na svahu" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/stado-pod-lesem.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/stado-pod-lesem.jpg" alt="Stádo pod lesem" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/telata-pod-stromy.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/telata-pod-stromy.jpg" alt="Skupina telat pod stromy" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/telata-pod-stromy.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/telata-pod-stromy.jpg" alt="Jalovice" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/stado-na-podzim.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/stado-na-podzim.jpg" alt="Stádo na podzimní pastvině" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/telata-na-svahu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/telata-na-svahu.jpg" alt="Telata společně odpočívají na svahu" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-u-krmeni.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/skot-u-krmeni.jpg" alt="Skot u krmení na pastvině" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-na-zelene-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-na-zelene-louce.jpg" alt="Hnědá kráva na zelené louce" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-pri-pastve.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-pri-pastve.jpg" alt="Hnědá kráva při pastvě" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerny-skot-u-ohrady.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/cerny-skot-u-ohrady.jpg" alt="Černý skot u ohrady"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/telata-na-svahu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/telata-na-svahu.jpg" alt="Jalovice" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-u-krmeni.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/skot-u-krmeni.jpg" alt="Mačkaná směs obilí a pelušky pro plemenného býka" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-na-zelene-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-na-zelene-louce.jpg" alt="Pastva na jetelotrávě" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-pri-pastve.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/skot/krava-pri-pastve.jpg" alt="Pastva na jetelotrávě" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/cerny-skot-u-ohrady.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/cerny-skot-u-ohrady.jpg" alt="Skot Aberdeen angus"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-u-stromu.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/skot-u-stromu.jpg" alt="Skot na Bezděkovském mlýně"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/stado-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/stado-na-pastvine.jpg" alt="Hovězí stádo"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-v-trave.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/tele-v-trave.jpg" alt="Pastva skotu"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-na-louce.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/skot-na-louce.jpg" alt="Kravička na louce"></a>
-            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-aubrac.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/skot/tele-aubrac.jpg" alt="Skot plemene Aubrac"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/stado-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/stado-na-pastvine.jpg" alt="Stádo"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-v-trave.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/tele-v-trave.jpg" alt="Telátko v trávě"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/skot-na-louce.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/skot/skot-na-louce.jpg" alt="Chutné mateřské mléko"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/skot/tele-aubrac.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/skot/tele-aubrac.jpg" alt="Jalovička plemene Aubrac"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/aubrac-stado.jpg" target="_blank"><img src="files/nahledy/520/skot/aubrac-stado.jpg" alt="Stádo plemene Aubrac na pastvině" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/byk-kvido.jpg" target="_blank"><img src="files/nahledy/520/skot/byk-kvido.jpg" alt="Rohatý býk Kvído na pastvině" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/krava-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/skot/krava-na-pastvine.jpg" alt="Kráva na pastvině"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/skot/verca-s-mazlenou.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/skot/verca-s-mazlenou.jpg" alt="Verča s Mazlenou"></a>
             <a class="gallery-item" data-category="hov" href="files/fotky/produkty/balicky-hoveziho-masa.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/produkty/balicky-hoveziho-masa.jpg" alt="Balíčky hovězího masa"></a>
 
-            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obilne-pole.jpg" target="_blank"><img src="files/nahledy/520/pole/obilne-pole.jpg" alt="Obilné pole" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obili-u-lesa.jpg" target="_blank"><img src="files/nahledy/520/pole/obili-u-lesa.jpg" alt="Obilí u lesa" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obili-pri-zapadu-slunce.jpg" target="_blank"><img src="files/nahledy/520/pole/obili-pri-zapadu-slunce.jpg" alt="Obilí při západu slunce" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="obi" href="files/fotky/pole/pole-na-obzoru.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/pole-na-obzoru.jpg" alt="Obilí"></a>
-            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obilne-pole-s-mraky.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/obilne-pole-s-mraky.jpg" alt="Pole s obilím"></a>
-            <a class="gallery-item" data-category="obi" href="files/fotky/pole/klasy-v-obili.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/klasy-v-obili.jpg" alt="Obilí na poli"></a>
+            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obilne-pole.jpg" target="_blank"><img src="files/nahledy/520/pole/obilne-pole.jpg" alt="Tritikale v Řeženčicích" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obili-u-lesa.jpg" target="_blank"><img src="files/nahledy/520/pole/obili-u-lesa.jpg" alt="Tritikale u lesa" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obili-pri-zapadu-slunce.jpg" target="_blank"><img src="files/nahledy/520/pole/obili-pri-zapadu-slunce.jpg" alt="Tritikale v zatáčce" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="obi" href="files/fotky/pole/pole-na-obzoru.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/pole-na-obzoru.jpg" alt="Pšenice ozimá"></a>
+            <a class="gallery-item" data-category="obi" href="files/fotky/pole/obilne-pole-s-mraky.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/obilne-pole-s-mraky.jpg" alt="Pšenice ozimá"></a>
+            <a class="gallery-item" data-category="obi" href="files/fotky/pole/klasy-v-obili.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/klasy-v-obili.jpg" alt="Pšenice ozimá"></a>
             <a class="gallery-item" data-category="obi" href="files/fotky/pole/obilne-klasy-na-poli.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/obilne-klasy-na-poli.jpg" alt="Sklizeň obilí"></a>
             <a class="gallery-item" data-category="obi" href="files/fotky/pole/obilne-klasy-zblizka.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/pole/obilne-klasy-zblizka.jpg" alt="Obilné pole"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/kone-ve-vybehu.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/kone-ve-vybehu.jpg" alt="Koně na statku"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/blesk-a-marcus.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/blesk-a-marcus.jpg" alt="Blesk a Marcus" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/blesk-ve-staji.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/blesk-ve-staji.jpg" alt="Blesk ve stáji" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/blesk-ve-staji.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/blesk-ve-staji.jpg" alt="Blesk u přístřešku" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/blesk-ve-vybehu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/blesk-ve-vybehu.jpg" alt="Blesk ve výběhu" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/nugeta-na-slame.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/nugeta-na-slame.jpg" alt="Nugeta odpočívá na slámě" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/nugeta-ve-snehu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/nugeta-ve-snehu.jpg" alt="Nugeta ve sněhu" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/marcus-a-blesk-na-pastvine.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/marcus-a-blesk-na-pastvine.jpg" alt="Marcus a Blesk na pastvině" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/marcus-na-pastvine.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/marcus-na-pastvine.jpg" alt="Marcus na pastvině" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/marcus-a-hribek.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/marcus-a-hribek.jpg" alt="Marcus a Hříbek" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/kone-s-jezdci.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/kone-s-jezdci.jpg" alt="Koně s jezdci na lesní cestě" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/kone-s-jezdci.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/kone-s-jezdci.jpg" alt="Účast na maratonu proti vysoce radioaktivnímu hlubinnému úložišti jaderného odpadu" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/vyjizdka-lesem.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/ostatni-zvirata/vyjizdka-lesem.jpg" alt="Vyjížďka na koních lesem" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/kone-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/kone-na-pastvine.jpg" alt="Koně na pastvině"></a>
-            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/hribe-v-boxu.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/hribe-v-boxu.jpg" alt="Kůň v Rohozné"></a>
-            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/klisna-s-hribetem.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/klisna-s-hribetem.jpg" alt="Koně Bezděkovský mlýn"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/kone-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/kone-na-pastvine.jpg" alt="Koně před mlýnem"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/hribe-v-boxu.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/hribe-v-boxu.jpg" alt="Hříbátko Hafling – Nugetka"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/ostatni-zvirata/klisna-s-hribetem.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/klisna-s-hribetem.jpg" alt="Hafling – Zuzana s Hříbkem"></a>
 
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/marketka-v-obili.jpg" target="_blank"><img loading="lazy" decoding="async" class="portrait-safe" src="files/nahledy/520/pole/marketka-v-obili.jpg" alt="Markétka v obilí"></a>
-            <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-na-poli.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/pole/traktor-na-poli.jpg" alt="Traktor při polních pracích" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-na-poli.jpg" target="_blank" rel="noopener"><img src="files/nahledy/520/pole/traktor-na-poli.jpg" alt="Rozmetání chlévské mrvy" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/slunecnice-v-nektarodarnem-pasu.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/slunecnice-v-nektarodarnem-pasu.jpg" alt="Nektarodárný pás se slunečnicí"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/nektarodarny-pas.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/nektarodarny-pas.jpg" alt="Celý nektarodárný pás se slunečnicemi"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-s-rozmetadlem.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/traktor-s-rozmetadlem.jpg" alt="Traktor s rozmetadlem"></a>
@@ -2449,11 +3198,11 @@
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/kvetouci-peluska.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/kvetouci-peluska.jpg" alt="Detail pelušky"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/peluska-s-remizky.jpg" target="_blank"><img src="files/nahledy/520/pole/peluska-s-remizky.jpg" alt="Porost pelušky s remízky" loading="lazy" decoding="async"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/seti-pelusky.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/seti-pelusky.jpg" alt="Setí"></a>
-            <a class="gallery-item" data-category="eco" href="files/fotky/pole/obsluha-traktoru-super.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/obsluha-traktoru-super.jpg" alt="Traktor při práci"></a>
-            <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-super.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/traktor-super.jpg" alt="Polní práce"></a>
-            <a class="gallery-item" data-category="eco" href="files/fotky/ostatni-zvirata/jezdci-na-konich.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/ostatni-zvirata/jezdci-na-konich.jpg" alt="Pole a hospodaření"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/pole/obsluha-traktoru-super.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/obsluha-traktoru-super.jpg" alt="Setkání veteránů v Novém Rychnově s vyhranou 1. cenou"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-super.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/traktor-super.jpg" alt="Setkání veteránů v Novém Rychnově s vyhranou 1. cenou"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/ostatni-zvirata/jezdci-na-konich.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/ostatni-zvirata/jezdci-na-konich.jpg" alt="Účast na maratonu proti vysoce radioaktivnímu hlubinnému úložišti jaderného odpadu"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/jetelotrava.jpg" target="_blank"><img src="files/nahledy/520/pole/jetelotrava.jpg" alt="Jetelotravní porost" loading="lazy" decoding="async"></a>
-            <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-na-louce.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/traktor-na-louce.jpg" alt="Polní porost"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/pole/traktor-na-louce.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/traktor-na-louce.jpg" alt="Nahrnování sena do řádků"></a>
             <a class="gallery-item" data-category="eco" href="files/fotky/pole/beruska-v-obili.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/pole/beruska-v-obili.jpg" alt="Život v ekologickém porostu"></a>
 
             <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/bezdekovsky-mlyn.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/bezdekovsky-mlyn.jpg" alt="Nový pohled na mlýn"></a>
@@ -2463,16 +3212,28 @@
             <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/interier-mlynice.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/interier-mlynice.jpg" alt="Mlýnice v Bezděkovském mlýně"></a>
             <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-mlynu.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-mlynu.jpg" alt="Den otevřených mlýnů"></a>
             <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/clanek-jihlavske-listy.jpg" data-lightbox-single><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/clanek-jihlavske-listy.jpg" alt="Článek Jihlavské listy"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/ostatni-zvirata/slepice-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/slepice-na-pastvine.jpg" alt="Fotka ze statku"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/ostatni-zvirata/slepice-na-dvore.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/slepice-na-dvore.jpg" alt="Fotka z Bezděkovského mlýna"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-01.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-01.jpg" alt="Den otevřených vrat foto 1"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-02.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-02.jpg" alt="Den otevřených vrat foto 2"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-03.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-03.jpg" alt="Den otevřených vrat foto 3"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-04.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-04.jpg" alt="Den otevřených vrat foto 4"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-05.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-05.jpg" alt="Den otevřených vrat foto 5"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-06.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-06.jpg" alt="Den otevřených vrat foto 6"></a>
-            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-07.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-07.jpg" alt="Den otevřených vrat foto 7"></a>
-          </div>
+            <a class="gallery-item" data-category="ost" href="files/fotky/ostatni-zvirata/slepice-na-pastvine.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/slepice-na-pastvine.jpg" alt="Slepice na zeleném"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/ostatni-zvirata/slepice-na-dvore.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/fotky/ostatni-zvirata/slepice-na-dvore.jpg" alt="Slepice na zeleném"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-01.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-01.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-02.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-02.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-03.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-03.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-04.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-04.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-05.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-05.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-06.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-06.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/mlyn/den-otevrenych-vrat-07.jpg" target="_blank"><img loading="lazy" decoding="async" src="files/nahledy/520/mlyn/den-otevrenych-vrat-07.jpg" alt="Den otevřených vrat 1. 6. 2019"></a>
+                      <a class="gallery-item" data-category="eco" href="files/fotky/doplneni/seceni-na-seno-a-senaz.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/seceni-na-seno-a-senaz.jpg" alt="Sečení na seno a senáže" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/doplneni/tri-kone.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/tri-kone.jpg" alt="Tři koně na pastvině" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/doplneni/lisak-verny-pomocnik.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/lisak-verny-pomocnik.jpg" alt="Lišák – věrný kamarád a zasloužilý pomocník při hlídání a přehánění krav" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/doplneni/seti-na-poli.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/seti-na-poli.jpg" alt="Setí" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/doplneni/dva-traktory.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/dva-traktory.jpg" alt="Mládí do práce a stáří pro radost" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/doplneni/den-otevrenych-mlynu-rodina.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/den-otevrenych-mlynu-rodina.jpg" alt="Den otevřených mlýnů" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/doplneni/lisovani-sena.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/lisovani-sena.jpg" alt="Lisování sena" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="eco" href="files/fotky/doplneni/baliky-sena-na-louce.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/baliky-sena-na-louce.jpg" alt="Lisování sena na louce" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="hov" href="files/fotky/doplneni/stado-na-pastvine.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/stado-na-pastvine.jpg" alt="Stádo na pastvině" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="kon" href="files/fotky/doplneni/marketka-s-falconem.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/marketka-s-falconem.jpg" alt="Markétka s Falconem – účast na maratonu proti úložišti" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/doplneni/deti-pokracovatele-rodu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/doplneni/deti-pokracovatele-rodu.jpg" alt="Děti – pokračovatelé rodu" loading="lazy" decoding="async"></a>
+            <a class="gallery-item" data-category="ost" href="files/fotky/doplneni/hospodar-v-nakladaci.jpg" target="_blank" rel="noopener"><img src="files/fotky/doplneni/hospodar-v-nakladaci.jpg" alt="Petr Řezníček – hospodář v nakladači" loading="lazy" decoding="async"></a>
+</div>
         </div>
       </section>
 
@@ -2493,7 +3254,7 @@
 
       <section class="section" id="kuratka">
         <div class="container">
-          <div class="section-head reveal"><h2>Kuřátka z roku 2026</h2></div>
+          <div class="section-head reveal"><h2>Kuřátka z roku 2026</h2></div>
           <div class="animal-media reveal" data-lightbox-group="chicks">
             <a href="files/fotky/ostatni-zvirata/kuratka-ve-vybehu.jpg" target="_blank" rel="noopener"><img src="files/nahledy/1100/ostatni-zvirata/kuratka-ve-vybehu.jpg" alt="Kuřátka u kurníku" loading="lazy" decoding="async"></a>
             <a href="files/fotky/ostatni-zvirata/kvocna-s-kuratky.jpg" target="_blank" rel="noopener"><img src="files/nahledy/1100/ostatni-zvirata/kvocna-s-kuratky.jpg" alt="Kvočna s kuřátky ve výběhu" loading="lazy" decoding="async"></a>
@@ -2510,9 +3271,9 @@
           <div class="section-head reveal">
             <div>
               <p class="section-kicker">Ze statku</p>
-              <h2 data-edit-key="storiesTitle">Ocenění, mlynářská historie a příroda kolem Rohozné</h2>
+              <h2 data-edit-key="storiesTitle">Ocenění, mlynářská historie a příroda kolem Rohozné</h2>
             </div>
-            <p class="section-copy" data-edit-key="storiesCopy">Další informace a zajímavosti z Bezděkovského mlýna, historie mlynářského rodu a příroda kolem Rohozné.</p>
+            <p class="section-copy" data-edit-key="storiesCopy">Další informace a zajímavosti z Bezděkovského mlýna, historie mlynářského rodu a příroda kolem Rohozné.</p>
           </div>
           <div class="stories-grid">
             <div class="feature-panel reveal" id="nasi-mlynari">
@@ -2530,8 +3291,8 @@
               <div class="feature-panel reveal">
                 <h3>Další články</h3>
                 <ul class="link-list">
-                  <li><a href="files/dokumenty/clanek-magazin-pravo.pdf" target="_blank" rel="noopener">Článek v Magazínu Právo (PDF)</a></li>
-                  <li><a href="https://prozeny.blesk.cz/clanek/pro-zeny/849966/z-mlynaru-uspesnymi-chovateli-manzele-na-vysocine-vzkrisili-rodinnou-dedictvi-a-vyrabeji-nejlepsi-bio-maso.html" target="_blank" rel="noopener">Z mlynářů úspěšnými chovateli (Blesk pro ženy)</a></li>
+                  <li><a href="files/dokumenty/clanek-magazin-pravo-original.pdf" target="_blank" rel="noopener">Článek v Magazínu Právo (PDF)</a></li>
+                  <li><a href="https://prozeny.blesk.cz/clanek/pro-zeny/849966/z-mlynaru-uspesnymi-chovateli-manzele-na-vysocine-vzkrisili-rodinnou-dedictvi-a-vyrabeji-nejlepsi-bio-maso.html" target="_blank" rel="noopener">Z mlynářů úspěšnými chovateli (Blesk pro ženy)</a></li>
                 </ul>
                 <h3>Rok farmářek 2026</h3>
                 <ul class="link-list">
@@ -2558,9 +3319,9 @@
               </div>
             </div>
             <div class="feature-panel reveal read-more">
-              <h3>Krátké seznámení s hmyzí faunou pastvin v okolí obce Rohozná</h3>
+              <h3>Krátké seznámení s hmyzí faunou pastvin v okolí obce Rohozná</h3>
               <div class="read-more-body">
-              <p>To, že je okolí obce Rohozná díky ekologické pastvě hospodářských zvířat bohaté na různé druhy korpofágních ( trusem se živících) brouků jsem věděl již z uplynulých let, kdy jsem si prošel koňskou pastvinu na východním svahu nad Rohoznou. Zde se mimo jiné hojně vyskytuje chrobák velký ( Geotrupes stercorarius), který v našich krajích dlouhou dobu chyběl. Je totiž vázán na koňský trus a omezení používání koní v zemědělství dohnalo tento druh skoro až na okraj vymizení. Mimo jiné drobnější druhy hnojníků se zde vyskytuje jeden z jejich největších zástupců Aphodius rufipes (10-13 mm). Jelikož v okolí Rohozné již několik let ekologicky hospodaří pan Řezníček, rozhodli jsme se s kamarády projít i tyto pastviny. Je to běh na dlouhou trať, neboť fauna brouků se liší jak podle ročního období, tak podle druhu hospodářských zvířat na dané pastvině a i složení druhů se mění rok od roku. Nyní si dovolím říct několik slov úvodem. Ono je vlastně takové obyčejné kravské lejno takový svět sám pro sebe: Jsou to vlastně více či méně strávené zbytky rostlinné hmoty, kterými se živí další živočichové. Takže když kravička vykoná potřebu, začnou se k jejímu výtvoru slétat strávníci. V prvé řadě mouchy, které zde hned kladou vajíčka, z nichž se velmi rychle líhnou larvy živící se trusem, potom koprofágní brouci, kteří se jednak trusem živí, jednak ho zahrabávají do podzemních komůrek a kladou do něj vajíčka. Zde se jedná především o brouky čeledí vrubounovitých a vodomilovitých. Za těmito strávníky přilétají predátoři, kteří se živí především larvami much. Zde se jedná především o zástupce čeledí mrštíkovitých a drabčíkovitých. Prohlídku jsme udělali na <a href="https://mapy.cz/zakladni?x=15.3994752&amp;y=49.3555927&amp;z=18&amp;base=ophoto&amp;source=muni&amp;id=5547">této</a> louce a musím říci, že jsme byli opravdu příjemně překvapeni. Bohatství druhů bylo velké a nalezli jsme tu druhy, které bychom na Vysočině v žádném případě nečekali. Z koprofágních brouků jsou to v prvé řadě hnojníci rodu Aphodius. Masově se zde vyskytuje Aphodius rufus, potom hnojník obecný Aphodius fimetarius, velký podhorský hnojník Aphodius fosfor a Aphodius erraticus. Největším překvapením zde byl náš největší teplomilný hnojník Aphodius scrutator (13mm). Nyní se sice v teplejších oblastech našeho státu nalézá, ale v padesátých letech údaje z Čech úplně chyběly a chytal se pouze vzácně na jižní Moravě a na jižním Slovensku. Mimo to se zde vyskytovaly ještě další dva druhy drobnějších hnojníků, ty však zatím nemám určeny. Další velkou skupinou potom jsou drobní vodomilové rodů Sphaeridium ( asi 3 druhy) a Cercyon ( asi 4 druhy). První rod se živí trusem, jeho larvy jsou dravé a živí se larvami much. Bezpečně určené mám Sphaeridium scarabaeoides a Sphaeridium bipustulatum. Rod Cercyon se také živí trusem. Zde mám bezpečně určeny taktéž dva druhy Cercyon melanocephalus a Cercyon impressus. Z predátorů se zde hojně vyskyují mršníci rodu Hister. Dospělci i larvy se živí larvami dvoukřídlých ( much). Dokladován Hister ventralis. Z několika druhů drabčíků je zde nejhojnější poměrně velký, velmi čilý drabčík Ontholestes murinus. On i jeho larvy se živí především larvami much, ale jak jsme se přesvědčili, jsou schopni ulovit i hnojníka (A. rufus). Skutečnou bombou potom bylo pozorování několika párů vzácného teplomilného drabčíka huňatého ( Emus hirtus). Tento velký drabčík ( 24-32 mm) uváděný jako kriticky ohrožený, se sice v poslední době začíná objevovat na pastvinách v teplejších oblastech ( např. okolí Českých Budějovic), ale jeho nález zde byl opravdu velkým překvapením. Obrázky všech uvedených druhů lze dohledat na stránkách biolib.cz O dalším průběhu pozorování budu průběžně informovat. Sepsal amatérský entomolog a milovník přírody Mašita Ivo léto 2016</p>
+              <p>To, že je okolí obce Rohozná díky ekologické pastvě hospodářských zvířat bohaté na různé druhy korpofágních ( trusem se živících) brouků jsem věděl již z uplynulých let, kdy jsem si prošel koňskou pastvinu na východním svahu nad Rohoznou. Zde se mimo jiné hojně vyskytuje chrobák velký ( Geotrupes stercorarius), který v našich krajích dlouhou dobu chyběl. Je totiž vázán na koňský trus a omezení používání koní v zemědělství dohnalo tento druh skoro až na okraj vymizení. Mimo jiné drobnější druhy hnojníků se zde vyskytuje jeden z jejich největších zástupců Aphodius rufipes (10-13 mm). Jelikož v okolí Rohozné již několik let ekologicky hospodaří pan Řezníček, rozhodli jsme se s kamarády projít i tyto pastviny. Je to běh na dlouhou trať, neboť fauna brouků se liší jak podle ročního období, tak podle druhu hospodářských zvířat na dané pastvině a i složení druhů se mění rok od roku. Nyní si dovolím říct několik slov úvodem. Ono je vlastně takové obyčejné kravské lejno takový svět sám pro sebe: Jsou to vlastně více či méně strávené zbytky rostlinné hmoty, kterými se živí další živočichové. Takže když kravička vykoná potřebu, začnou se k jejímu výtvoru slétat strávníci. V prvé řadě mouchy, které zde hned kladou vajíčka, z nichž se velmi rychle líhnou larvy živící se trusem, potom koprofágní brouci, kteří se jednak trusem živí, jednak ho zahrabávají do podzemních komůrek a kladou do něj vajíčka. Zde se jedná především o brouky čeledí vrubounovitých a vodomilovitých. Za těmito strávníky přilétají predátoři, kteří se živí především larvami much. Zde se jedná především o zástupce čeledí mrštíkovitých a drabčíkovitých. Prohlídku jsme udělali na <a href="https://mapy.cz/zakladni?x=15.3994752&amp;y=49.3555927&amp;z=18&amp;base=ophoto&amp;source=muni&amp;id=5547">této</a> louce a musím říci, že jsme byli opravdu příjemně překvapeni. Bohatství druhů bylo velké a nalezli jsme tu druhy, které bychom na Vysočině v žádném případě nečekali. Z koprofágních brouků jsou to v prvé řadě hnojníci rodu Aphodius. Masově se zde vyskytuje Aphodius rufus, potom hnojník obecný Aphodius fimetarius, velký podhorský hnojník Aphodius fosfor a Aphodius erraticus. Největším překvapením zde byl náš největší teplomilný hnojník Aphodius scrutator (13mm). Nyní se sice v teplejších oblastech našeho státu nalézá, ale v padesátých letech údaje z Čech úplně chyběly a chytal se pouze vzácně na jižní Moravě a na jižním Slovensku. Mimo to se zde vyskytovaly ještě další dva druhy drobnějších hnojníků, ty však zatím nemám určeny. Další velkou skupinou potom jsou drobní vodomilové rodů Sphaeridium ( asi 3 druhy) a Cercyon ( asi 4 druhy). První rod se živí trusem, jeho larvy jsou dravé a živí se larvami much. Bezpečně určené mám Sphaeridium scarabaeoides a Sphaeridium bipustulatum. Rod Cercyon se také živí trusem. Zde mám bezpečně určeny taktéž dva druhy Cercyon melanocephalus a Cercyon impressus. Z predátorů se zde hojně vyskyují mršníci rodu Hister. Dospělci i larvy se živí larvami dvoukřídlých ( much). Dokladován Hister ventralis. Z několika druhů drabčíků je zde nejhojnější poměrně velký, velmi čilý drabčík Ontholestes murinus. On i jeho larvy se živí především larvami much, ale jak jsme se přesvědčili, jsou schopni ulovit i hnojníka (A. rufus). Skutečnou bombou potom bylo pozorování několika párů vzácného teplomilného drabčíka huňatého ( Emus hirtus). Tento velký drabčík ( 24-32 mm) uváděný jako kriticky ohrožený, se sice v poslední době začíná objevovat na pastvinách v teplejších oblastech ( např. okolí Českých Budějovic), ale jeho nález zde byl opravdu velkým překvapením. Obrázky všech uvedených druhů lze dohledat na stránkách biolib.cz O dalším průběhu pozorování budu průběžně informovat. Sepsal amatérský entomolog a milovník přírody Mašita Ivo léto 2016</p>
               </div>
               <button class="read-more-toggle" type="button" aria-expanded="false">Číst dále</button>
               <ul class="link-list">
@@ -2578,7 +3339,7 @@
           <div class="section-head reveal">
             <div>
               <p class="section-kicker">Soubory ke stažení</p>
-              <h2 data-edit-key="downloadsTitle">Certifikát, maso a praktické přílohy</h2>
+              <h2 data-edit-key="downloadsTitle">Certifikát, maso a praktické přílohy</h2>
             </div>
             <p class="section-copy" data-edit-key="downloadsCopy">Všechny původní soubory ke stažení zůstaly dostupné.</p>
           </div>
@@ -2587,8 +3348,7 @@
             <li><a href="files/dokumenty/zrani-masa.jpg" target="_blank">Zrání hovězího masa</a></li>
             <li><a href="files/dokumenty/partie-hoveziho-masa.jpg" target="_blank">Partie hovězího masa</a></li>
             <li><a href="files/dokumenty/upravy-hoveziho-masa.jpg" target="_blank">Úprava hovězího masa</a></li>
-            <li><a href="files/dokumenty/zrani-hoveziho-masa.odt" target="_blank">Zrání hovězího masa ODT</a></li>
-            <li><a href="files/dokumenty/nabidka-cenik.jpg" target="_blank">Nabídka a ceník</a></li>
+            <li><a href="#zrani-masa">Jak zraje naše hovězí maso</a></li>
           </ul>
           <p class="reveal" style="margin-top: 34px;">
             <img src="files/dokumenty/publicita-mrazak.png" alt="Povinná publicita" loading="lazy" style="width: min(260px, 70%); height: auto;">
@@ -2596,14 +3356,17 @@
         </div>
       </section>
 
+
+
+
       <section class="section" id="contact">
         <div class="container">
           <div class="section-head reveal">
             <div>
-              <p class="section-kicker">Kontakt a ubytování</p>
+              <p class="section-kicker">Kontakt a ubytování</p>
               <h2 data-edit-key="contactTitle">Zavolejte, napište nebo přijeďte do Rohozné</h2>
             </div>
-            <p class="section-copy" data-edit-key="contactCopy">Pro objednávky masa, ubytování i návštěvu statku je nejlepší se předem domluvit.</p>
+            <p class="section-copy" data-edit-key="contactCopy">Pro objednávky masa, ubytování i návštěvu statku je nejlepší se předem domluvit.</p>
           </div>
           <div class="contact-grid">
             <address class="contact-card reveal">
@@ -2674,6 +3437,20 @@
         element.textContent = value;
       }
     });
+
+    // Synchronize contact links and text after applying editableContent.
+    document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+      if (link.getAttribute("href").includes("reznicci.rohozna@seznam.cz")) link.href = "mailto:" + siteSettings.email;
+    });
+    document.querySelectorAll('a[href^="tel:"]').forEach((link) => { link.href = "tel:" + siteSettings.phoneLink; });
+    const contactText = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let contactNode;
+    while ((contactNode = contactText.nextNode())) {
+      if (contactNode.parentElement?.closest("script, style")) continue;
+      contactNode.textContent = contactNode.textContent
+        .replaceAll("reznicci.rohozna@seznam.cz", siteSettings.email)
+        .replaceAll("606 110 436", siteSettings.phoneDisplay);
+    }
     const body = document.body;
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.querySelector(".nav-links");
@@ -2875,6 +3652,255 @@
       }
     });
 
+
+
+    const inquiryForm = document.querySelector("#inquiryForm");
+    const inquiryStatus = document.querySelector("#inquiryStatus");
+    inquiryForm.action = "https://formspree.io/f/" + encodeURIComponent(siteSettings.formspreeId);
+    inquiryForm.dataset.formspreeId = siteSettings.formspreeId;
+    const productSelect = document.querySelector("#inquiryProduct");
+    const productTrigger = document.querySelector("#productTrigger");
+    const productMenu = document.querySelector("#productOptions");
+    const productOptions = [...productMenu.querySelectorAll('[role="option"]')];
+    const productValue = document.querySelector("#productValue");
+    const productChoice = document.querySelector("#productChoice");
+    productOptions.forEach((option) => {
+      const price = editableContent[option.dataset.priceKey];
+      if (price) option.querySelector(".choice-price").textContent = price;
+    });
+    [...productSelect.options].forEach((option) => {
+      const price = editableContent[option.dataset.priceKey];
+      if (price) option.textContent = option.value + " · " + price;
+    });
+    let activeProduct = 0;
+    let productSearch = "";
+    let productSearchTimer;
+    productSelect.hidden = true;
+    productSelect.required = false;
+    productTrigger.hidden = false;
+
+    function highlightProduct(index) {
+      activeProduct = (index + productOptions.length) % productOptions.length;
+      productOptions.forEach((option, i) => option.classList.toggle("is-active", i === activeProduct));
+      productTrigger.setAttribute("aria-activedescendant", productOptions[activeProduct].id);
+      productOptions[activeProduct].scrollIntoView({ block: "nearest", behavior: "instant" });
+    }
+    function openProductMenu() {
+      productMenu.hidden = false;
+      productTrigger.setAttribute("aria-expanded", "true");
+      const selected = productOptions.findIndex((item) => item.dataset.value === productSelect.value);
+      highlightProduct(selected < 0 ? 0 : selected);
+    }
+    function closeProductMenu() {
+      productMenu.hidden = true;
+      productTrigger.setAttribute("aria-expanded", "false");
+      productTrigger.removeAttribute("aria-activedescendant");
+    }
+    function selectProduct(index) {
+      const option = productOptions[index];
+      productSelect.value = option.dataset.value;
+      productValue.textContent = option.dataset.value + " · " + option.querySelector(".choice-price").textContent;
+      productOptions.forEach((item) => item.setAttribute("aria-selected", String(item === option)));
+      productTrigger.removeAttribute("aria-invalid");
+      if (fieldErrors.has(productTrigger)) validateField(productTrigger);
+      inquiryStatus.textContent = "";
+      closeProductMenu();
+      productTrigger.focus({ preventScroll: true });
+    }
+    productTrigger.addEventListener("click", () => {
+      if (productMenu.hidden) openProductMenu();
+      else closeProductMenu();
+    });
+    productMenu.addEventListener("click", (event) => {
+      const option = event.target.closest('[role="option"]');
+      if (option) selectProduct(productOptions.indexOf(option));
+    });
+    productTrigger.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") { closeProductMenu(); return; }
+      if (event.key === "Escape") { event.preventDefault(); closeProductMenu(); return; }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        if (productMenu.hidden) openProductMenu();
+        else highlightProduct(activeProduct + (event.key === "ArrowDown" ? 1 : -1));
+        return;
+      }
+      if ((event.key === "Enter" || event.key === " ") && !productMenu.hidden) {
+        event.preventDefault();
+        selectProduct(activeProduct);
+        return;
+      }
+      if (event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        if (productMenu.hidden) openProductMenu();
+        highlightProduct(event.key === "Home" ? 0 : productOptions.length - 1);
+        return;
+      }
+      if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey && event.key !== " ") {
+        event.preventDefault();
+        if (productMenu.hidden) openProductMenu();
+        clearTimeout(productSearchTimer);
+        productSearch += event.key.toLocaleLowerCase("cs");
+        const found = productOptions.findIndex((item) => item.dataset.value.toLocaleLowerCase("cs").startsWith(productSearch));
+        if (found >= 0) highlightProduct(found);
+        productSearchTimer = setTimeout(() => { productSearch = ""; }, 700);
+      }
+    });
+    document.addEventListener("pointerdown", (event) => {
+      if (!productChoice.contains(event.target)) closeProductMenu();
+    });
+    document.addEventListener("focusin", (event) => {
+      if (!productChoice.contains(event.target)) closeProductMenu();
+    });
+
+    document.querySelector(".nav-order").addEventListener("click", () => {
+      body.classList.remove("nav-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Otevřít menu");
+      menuToggle.textContent = "☰";
+    });
+
+    const customerNameField = document.querySelector("#inquiryName");
+    const customerPhoneField = document.querySelector("#inquiryPhone");
+    const customerEmailField = document.querySelector("#inquiryEmail");
+    const customerMessageField = document.querySelector("#inquiryMessage");
+    const validatedFields = [productTrigger, customerNameField, customerPhoneField, customerEmailField, customerMessageField];
+    const fieldErrors = new Map();
+    validatedFields.forEach((field) => {
+      const error = document.createElement("span");
+      error.id = field.id + "Error";
+      error.className = "field-error";
+      error.hidden = true;
+      field.closest(".form-field").append(error);
+      field.setAttribute("aria-describedby", error.id);
+      fieldErrors.set(field, error);
+      field.addEventListener("blur", () => validateField(field));
+      if (field !== productTrigger) {
+        field.addEventListener("input", () => {
+          if (field.hasAttribute("aria-invalid")) validateField(field);
+        });
+      }
+    });
+
+    function normalizePhone(value) {
+      const compact = value.trim().replace(/[\s().-]/g, "").replace(/^00/, "+");
+      return /^[0-9]{9}$/.test(compact) ? "+420" + compact : compact;
+    }
+
+    function showFieldError(field, message) {
+      const error = fieldErrors.get(field);
+      error.textContent = message;
+      error.hidden = !message;
+      if (message) field.setAttribute("aria-invalid", "true");
+      else field.removeAttribute("aria-invalid");
+      return !message;
+    }
+
+    function validateField(field) {
+      let message = "";
+      const value = field === productTrigger ? productSelect.value : field.value.trim();
+      if (field === productTrigger) {
+        if (!productOptions.some((option) => option.dataset.value === value)) message = "Vyberte prosím maso nebo balíček ze seznamu.";
+      } else if (field === customerNameField) {
+        const letters = value.match(/\p{L}/gu) || [];
+        if (letters.length < 2) message = "Vyplňte prosím své jméno, alespoň dvě písmena.";
+        else if (value.length > 120 || !/^[\p{L}\p{M}][\p{L}\p{M}\s.'’\-]*$/u.test(value)) message = "Jméno může obsahovat písmena, mezery, tečku, apostrof a pomlčku.";
+      } else if (field === customerPhoneField) {
+        const phone = normalizePhone(value);
+        if (!value) message = "Vyplňte prosím telefon pro domluvu odběru.";
+        else if (!/^\+[1-9][0-9]{7,14}$/.test(phone)) message = "Zadejte 9 číslic českého telefonu, nebo zahraniční číslo s předvolbou +.";
+        else if (/^\+42[01]/.test(phone) && phone.length !== 13) message = "Za předvolbou +420 nebo +421 má být 9 číslic.";
+      } else if (field === customerEmailField) {
+        if (!value) message = "Vyplňte prosím e-mailovou adresu.";
+        else {
+          field.value = value;
+          const parts = value.split("@");
+          const domain = parts[1] || "";
+          if (field.validity.typeMismatch || parts.length !== 2 || value.length > 254
+              || parts[0].length > 64 || /\s/.test(value) || !domain.includes(".")
+              || domain.split(".").some((part) => !part || part.length > 63 || part.startsWith("-") || part.endsWith("-"))) {
+            message = "Zadejte úplnou adresu, například jana@seznam.cz.";
+          }
+        }
+      } else if (value.length > 4000) {
+        message = "Poznámka může mít nejvýše 4 000 znaků.";
+      }
+      return showFieldError(field, message);
+    }
+
+    function validateInquiry() {
+      let firstInvalid = null;
+      validatedFields.forEach((field) => {
+        if (!validateField(field) && !firstInvalid) firstInvalid = field;
+      });
+      if (!firstInvalid) {
+        customerNameField.value = customerNameField.value.trim().replace(/\s+/g, " ");
+        customerEmailField.value = customerEmailField.value.trim();
+        customerPhoneField.value = normalizePhone(customerPhoneField.value);
+      }
+      return firstInvalid;
+    }
+
+    let inquirySending = false;
+    inquiryForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (inquirySending) return;
+      const invalidField = validateInquiry();
+      if (invalidField) {
+        inquiryStatus.textContent = "Zkontrolujte prosím označená pole.";
+        invalidField.focus();
+        if (invalidField === productTrigger) openProductMenu();
+        return;
+      }
+      inquiryStatus.textContent = "";
+      // Formspree ID is edited in siteSettings at the beginning of this file.
+      const formspreeId = siteSettings.formspreeId;
+      if (!formspreeId) {
+        inquiryStatus.textContent = "Toto je testovací formulář. Odesílání ještě čeká na připojení Formspree.";
+        inquiryStatus.focus({ preventScroll: true });
+        return;
+      }
+      const button = inquiryForm.querySelector('button[type="submit"]');
+      const originalLabel = button.textContent;
+      inquirySending = true;
+      button.disabled = true;
+      button.textContent = "Odesílám…";
+      inquiryForm.setAttribute("aria-busy", "true");
+      inquiryStatus.textContent = "";
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 20000);
+      try {
+        const submission = new FormData(inquiryForm);
+        const customerName = String(submission.get("name") || "").trim();
+        const selectedProduct = productOptions.find((option) => option.dataset.value === productSelect.value);
+        const unitPrice = selectedProduct?.querySelector(".choice-price").textContent || "";
+        submission.set("subject", siteSettings.emailSubject + " – " + productSelect.value + " – " + customerName);
+        submission.set("Jednotková cena", unitPrice);
+        if (!String(submission.get("message") || "").trim()) {
+          submission.set("message", "Bez dalšího upřesnění. Prosím o domluvu dostupnosti a termínu odběru.");
+        }
+        const response = await fetch("https://formspree.io/f/" + encodeURIComponent(formspreeId), {
+          method: "POST", body: submission,
+          headers: { Accept: "application/json" }, signal: controller.signal
+        });
+        if (!response.ok) throw new Error("Submission failed");
+        inquiryStatus.textContent = "Děkujeme, vaše poptávka byla odeslána. Ozveme se vám s dostupností a termínem odběru.";
+        inquiryForm.reset();
+        fieldErrors.forEach((_, field) => showFieldError(field, ""));
+        productValue.textContent = "Vyberte produkt";
+        productOptions.forEach((item) => item.setAttribute("aria-selected", "false"));
+        closeProductMenu();
+      } catch (error) {
+        inquiryStatus.textContent = error.name === "AbortError"
+          ? "Potvrzení odeslání trvá déle. Zkuste prosím ověřit doručení, než poptávku odešlete znovu."
+          : "Odeslání se nepodařilo potvrdit. Údaje zůstaly vyplněné. Zkuste to prosím znovu nebo nám zavolejte.";
+      } finally {
+        clearTimeout(timeout);
+        inquirySending = false;
+        button.disabled = false;
+        button.textContent = originalLabel;
+        inquiryForm.removeAttribute("aria-busy");
+      }
+    });
   </script>
 </body>
 </html>
